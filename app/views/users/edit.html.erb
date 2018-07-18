@@ -1,0 +1,59 @@
+<div>
+  <h2 class="useredit_headline">登録情報編集 </h2>
+</div>
+  <% if @user.errors.full_messages %>
+    <div class="errors_message"><% @user.errors.full_messages.each do |message| %></div>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+<%= form_for(@user) do |f| %>
+  <table class="edit_table" border="1">
+    <tr>
+      <div class="filed">
+        <td class="td_color"><%= f.label :氏名,class: "label_name" %><br /></td>
+        <td><%= f.text_field :user_name%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :フリガナ,class: "label_name" %><br /></td>
+        <td><%= f.text_field :user_phonetic %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :郵便番号,class: "label_name" %><br /></td>
+        <td><%= f.number_field :postal %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :住所,class: "label_name" %><br /></td>
+        <td><%= f.text_field :address %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :主要活動地域,class: "label_name" %><br /></td>
+        <td><%= f.collection_select(:place_field_id, PlaceField.all, :id, :place, prompt: "選択する") %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :電話番号,class: "label_name" %><br /></td>
+        <td><%= f.number_field :tell %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :メールアドレス,class: "label_name" %><br /></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      </div>
+    </tr>
+  </table>
+
+  <div class="actions">
+    <%= f.submit "編集", class:"edit_btn" %>
+  </div>
+<% end %>

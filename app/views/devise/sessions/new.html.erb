@@ -1,0 +1,25 @@
+<section class="login_container">
+  <div class="headline_box">
+    <h2 class="login_headline">ログイン</h2>
+  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <table border="1" class="login_table">
+      <tr>
+        <div class="field">
+          <td class="td_color"><%= f.label :メールアドレス,class: "label_name"  %><br/></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="field">
+          <td class="td_color"><%= f.label :パスワード,class: "label_name"  %><br /></td>
+          <td><%= f.password_field :password, autocomplete: "off" %></td>
+        </div>
+      </tr>
+    </table>
+    <div class="actions">
+      <%= f.submit "ログイン",class: "login_btn" %>
+    </div>
+  <% end %>
+  <%= render "devise/shared/links" %>
+</section>

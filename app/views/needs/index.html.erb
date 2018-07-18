@@ -1,0 +1,11 @@
+<% @needs.each do |f| %>
+<div><%= f.id %></div>
+<div>ニーズのタイトル表示部分：<%= f.need_title %></div>
+<div>ニーズの本文表示部分：<%= f.need_text %></div>
+<div>マッチング希望時期の表示部分：<%= f.match_time %></div>
+<div>希望商談場所の表示部分：<%= f.place %></div>
+<%= link_to "詳細へ",need_path(f) %>
+<% if f.delete_flag == true %>
+	<div style="color: red">↑削除済みのニーズです</div>
+<% end %>
+<% end %>

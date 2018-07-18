@@ -1,0 +1,64 @@
+<div>
+	<table class="table table-striped">
+		<tr>
+			<td class="td_user"><h4>名前</h4></td><td><h4 class="td_user_text"><%= @user.user_name %></h4></td>
+		</tr>
+		<tr>
+			<td class="td_user"><h4>かな</h4></td><td><h4 class="td_user_text"><%= @user.user_phonetic %></h4></td>
+		</tr>
+		<tr>
+			<td class="td_user"><h4>郵便番号</h4></td><td><h4 class="td_user_text"><%= @user.postal %></h4></td>
+		</tr>
+		<tr>
+			<td class="td_user"><h4>住所</h4></td><td><h4 class="td_user_text"><%= @user.address %></h4></td>
+		</tr>
+		<tr>
+			<td class="td_user"><h4>主要活動地域</h4></td><td><h4 class="td_user_text"><%= @user.place_field.place %></h4></td>
+		</tr>
+		<tr>
+			<td class="td_user"><h4>電話番号</h4></td><td><h4 class="td_user_text"><%= @user.tell %></h4></td>
+		</tr>
+		<tr>
+			<td class="td_user"><h4>メールアドレス</h4></td><td ><h4 class="td_user_text"><%= @user.email %></h4></td>
+		</tr>
+	</table>
+</div>
+<div>
+	<%= link_to "登録情報を変更する",edit_user_path ,class:'btn btn-info' %>
+		<br>
+	<% if @user.delete_flag == false%>
+		<br>
+		<%= link_to "退会希望方はこちら",unsubscribe_comments_new_path  %>
+
+	<% else %>
+		<h2>退会コメント</h2>
+		<div class="comment"><%= @unsubscribe_comment.comment %></div>
+	<% end %>
+</div>
+<br>
+
+<div class="user-box clearfix col-lg-8">
+      <h2 class="user-box-headline">登録したニーズ</h2>
+      <% if @needs %>
+        <% @needs.each do |need| %>
+        	<div>
+            	<h4>掲載日:<%= need.created_at.strftime('%Y/%m/%d') %></h4>
+            </div>
+         	<div class="order_content_3">
+            	<h4>タイトル:<%= need.need_title %></h4>
+          	<div class="order_content_4">
+            	<h4>マッチング状況:</h4>
+          	</div>
+
+            <% if need.delete_flag == true %>
+				<div style="color: red">削除済みのニーズです</div>
+			<% else %>
+			<%= link_to "詳細", need_path %>
+			<% end %>
+            <h4>___________________________</h4>
+
+        <% end %>
+      <% else %>
+        <h5>表示する履歴はありません</h5>
+      <% end %>
+</div>

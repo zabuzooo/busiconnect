@@ -1,0 +1,13 @@
+<div>ニーズのタイトル：<%= @need.need_title %></div>
+<div>ニーズの本文：<%= @need.need_text %></div>
+<div>ニーズ掲載日：<%= @need.created_at.strftime('%Y/%m/%d')  %></div>
+<div>マッチング希望時期：<%= @need.match_time %></div>
+<div>希望商談場所：<%= @need.place %></div>
+
+<% if @need.delete_flag == false && @need.user_id == current_user.id %>
+	<a><%= link_to 'ニーズを編集', edit_need_path(@need) %></a>
+	<a><%= link_to 'ニーズを削除', need_path(@need), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "このニーズを削除しますか？"} %></a>
+<% end %>
+<% if  @need.delete_flag == true %>
+	<div style="color: red">削除済みのニーズです</div>
+<% end %>

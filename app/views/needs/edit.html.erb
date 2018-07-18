@@ -1,0 +1,48 @@
+<div>
+  <h2 class="useredit_headline">ニーズ編集 </h2>
+</div>
+  <% if @need.errors.full_messages %>
+    <div class="errors_message"><% @need.errors.full_messages.each do |message| %></div>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+<%= form_for(@need) do |f| %>
+  <table class="edit_table" border="1">
+    <tr>
+      <div class="filed">
+        <td class="td_color"><%= f.label :タイトル,class: "label_name" %><br /></td>
+        <td><%= f.text_field :need_title%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :本文,class: "label_name" %><br /></td>
+        <td><%= f.text_field :need_text %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :マッチング希望時期,class: "label_name" %><br /></td>
+        <td><%= f.date_field :match_time %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :ニーズ募集地域,class: "label_name" %><br /></td>
+        <td><%= f.collection_select :place_field_id, @place_field, :id, :place, prompt: "選択する" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :希望する商談場所,class: "label_name" %><br /></td>
+        <td><%= f.text_field :place %></td>
+      </div>
+    </tr>
+
+  </table>
+
+  <div class="actions">
+    <%= f.submit "編集", class:"edit_btn" %>
+  </div>
+<% end %>
