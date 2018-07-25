@@ -1,3 +1,4 @@
+<div><%= attachment_image_tag @need, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
 <div>識別番号：<%= @need.need_number %></div>
 <div>投稿者名：<%= @need.user.user_name %></div>
 <div>目的：<%= @need.purpose.purpose_date %></div>

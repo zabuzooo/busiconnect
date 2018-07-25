@@ -50,11 +50,6 @@ class NeedsController < ApplicationController
   def search
   end
 
-  def top
-    @delete_flag_needs = Need.all
-    @needs = @delete_flag_needs.where(delete_flag: false)
-  end
-
   def introduction
   end
 
@@ -67,6 +62,6 @@ class NeedsController < ApplicationController
 
   private
     def need_params
-      params.require(:need).permit(:need_title, :need_text, :match_time, :place_field_id, :place, :user_id, :need_number, :purpose_id)
+      params.require(:need).permit(:need_title, :need_text, :match_time, :place_field_id, :place, :user_id, :need_number, :purpose_id, :image)
     end
 end

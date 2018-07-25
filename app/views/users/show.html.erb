@@ -17,7 +17,7 @@
 
   ◇ 会社情報（抜粋）
   <table class="table table-striped">
-
+  <div><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
     <tr>
       <td class="col-lg-4"><h4>業種</h4></td>
       <td><h4 class="td_user_text"><%= @user.type.type_industry %></h4></td>
@@ -94,7 +94,7 @@
             <div>申請者:<%= m.user.user_name %></div>
             <div>コメント:<%= m.matching_message %></div>
         	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
-            <div><%= link_to "申請者情報", user_path(m.user_id) %></div>
+            <div><%= link_to "申請者情報", company_path(m.user_id) %></div>
             <h4>___________________________</h4>
       	<% end %>
       <% end %>
@@ -110,7 +110,7 @@
             <div>連絡先<%=m.user.email%></div>
             <div>コメント:<%= m.matching_message %></div>
         	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
-            <div><%= link_to "申請者情報", user_path(m.user_id) %></div>
+            <div><%= link_to "申請者情報", company_path(m.user_id) %></div>
             <h4>___________________________</h4>
       	<% end %>
       <% end %>
@@ -124,7 +124,7 @@
             <div>申請者:<%= m.user.user_name %></div>
             <div>コメント:<%= m.matching_message %></div>
         	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
-            <div><%= link_to "申請者情報", user_path(m.user_id) %></div>
+            <div><%= link_to "申請者情報", company_path(m.user_id) %></div>
             <h4>___________________________</h4>
       	<% end %>
       <% end %>

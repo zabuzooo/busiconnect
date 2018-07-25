@@ -1,3 +1,4 @@
+<div><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
 <div>最終編集日：<%=@user.updated_at.strftime('%Y/%m/%d')%></div>
 <div>会社名：<%=@user.user_name%></div>
 <div>業種：<%=@user.type.type_industry%></div>
