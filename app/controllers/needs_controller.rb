@@ -2,7 +2,9 @@ class NeedsController < ApplicationController
   def new
     @need = Need.new
     @place_field = PlaceField.all
+    @purpose = Purpose.all
   end
+
   def create
        @need = Need.new(need_params)
        @need.user_id = current_user.id
@@ -18,6 +20,7 @@ class NeedsController < ApplicationController
         return
       end
   end
+
   def index
     @delete_flag_needs = Need.all
     @needs = @delete_flag_needs.where(delete_flag: false)
@@ -25,11 +28,13 @@ class NeedsController < ApplicationController
 
   def show
     @need = Need.find(params[:id])
+    @mt = @need.matchings
   end
 
   def edit
     @need = Need.find(params[:id])
     @place_field = PlaceField.all
+    @purpose = Purpose.all
   end
 
   def update
@@ -46,6 +51,11 @@ class NeedsController < ApplicationController
   end
 
   def top
+    @delete_flag_needs = Need.all
+    @needs = @delete_flag_needs.where(delete_flag: false)
+  end
+
+  def introduction
   end
 
   def destroy
@@ -57,6 +67,6 @@ class NeedsController < ApplicationController
 
   private
     def need_params
-      params.require(:need).permit(:need_title, :need_text, :match_time, :place_field_id, :place, :user_id)
+      params.require(:need).permit(:need_title, :need_text, :match_time, :place_field_id, :place, :user_id, :need_number, :purpose_id)
     end
 end

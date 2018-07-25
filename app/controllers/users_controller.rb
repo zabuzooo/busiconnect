@@ -23,10 +23,19 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@unsubscribe_comment = UnsubscribeComment.find_by(user_id: params[:id])
 		@needs = Need.where(user_id: params[:id])
+		@matchings0 = Matching.where(matching_s:0)
+		@matchings1 = Matching.where(matching_s:1)
+		@matchings2 = Matching.where(matching_s:2)
 	end
+
+
+	def company
+		@user = User.find(params[:id])
+	end
+
 
 	private
 		def user_params
-			params.require(:user).permit(:user_name, :user_phonetic, :postal, :address, :place_field_id, :tell, :email)
+			params.require(:user).permit(:user_name, :user_phonetic, :postal, :address, :place_field_id, :tell, :email, :pr, :anuual, :employment, :settlement_id, :type_id)
 		end
 end

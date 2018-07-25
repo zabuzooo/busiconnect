@@ -10,33 +10,34 @@
   </head>
 
   <body>
-  	<div class="header-padding">
     	<header>
 <!-- 条件分岐 -->
     		<% if user_signed_in? %>
     			<div class="header-links">
-    				<div class="link2"><%= link_to "マイページ", user_path(current_user.id), :style=>"color:white;" %></div>
-					<div class="link3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;" %></div>
+            <%= link_to "ニーズ登録",new_need_path ,class:'btn btn-sm btn-info'%>
+    				<div class="link2"><%= link_to "マイページ", user_path(current_user.id), :style=>"color:white;",class:'btn btn-sm btn-info' %></div>
+					<div class="link3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:white;",class:'btn btn-sm btn-info' %></div>
 				</div>
-				<div class="header-sub"><%= link_to "ビジコネクト",root_path, :style=>"color:white;" %>
+				<a href="/"><div class="header-logo"></div></a>
 					<div class="header-text2">
 						<p class="header-text3">ようこそ! <%= current_user.user_name %>さん</p>
 					</div>
-				</div>
+
 
 			<% else %>
-				<div class="header-links">
-					<div class="link2"><%= link_to "新規登録", new_user_registration_path, :style=>"color:white;" %></div>
-					<div class="link3"><%= link_to "ログイン", new_user_session_path, :style=>"color:white;" %></div>
+			<div class="header-links">
+    				<div class="link2"><%= link_to "新規登録", new_user_registration_path, :style=>"color:white;",class:'btn btn-sm btn-info' %></div>
+					<div class="link3"><%= link_to "ログイン", new_user_session_path, :style=>"color:white;",class:'btn btn-sm btn-info' %></div>
 				</div>
-				<div class="header-sub"><%= link_to "ビジコネクト",root_path, :style=>"color:white;" %>
+				<div class="header-sub"><a href="/"><div class="header-logo"></div></a>
 					<div class="header-text2">
 						<p class="header-text3">ようこそ! ゲストさん</p>
 					</div>
 				</div>
+
 			<% end %>
 <!-- 条件分岐終わり -->
-    	</header></div>
+    	</header>
     <%= yield %>
     	<footer>
 

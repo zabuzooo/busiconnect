@@ -1,35 +1,53 @@
-<div>
-<h2 class="product_header">ニーズ登録</h2>
+<div class="need_new_back">
+	<div class="container need_new_back_mask">
+  		<div class="row">
+    		<div class="col-md-offset-1 col-lg-10">
+				<div><br>
+					<h2 class="product_header">ニーズ登録</h2><br>
 
-<%= form_for @need, html: {class: 'form-horizontal'} do |f| %>
-<div class="form-group">
-	<label for="need_title" class="control-label col-xs-3">タイトル</label>
-	<div class="col-xs-7">
-		<%= f.text_field :need_title, class: 'form-control' %>
+					<%= form_for @need, html: {class: 'form-horizontal'} do |f| %>
+						<div class="form-group">
+							<label for="need_title" class="control-label col-xs-3">タイトル</label>
+							<div class="col-xs-7">
+								<%= f.text_field :need_title, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="purpose_id" class="control-label col-xs-3">目的の選択</label>
+							<div class="col-xs-7">
+								<%= f.collection_select :purpose_id, @purpose, :id, :purpose_date, prompt: "選択する" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="place_field_id" class="control-label col-xs-3">ニーズ募集地域の選択</label>
+							<div class="col-xs-7">
+							<%= f.collection_select :place_field_id, @place_field, :id, :place_m, prompt: "選択する" %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="place" class="control-label col-xs-3">希望する商談場所</label>
+							<div class="col-xs-7">
+								<%= f.text_field :place, class: 'form-control' %>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="match_time" class="control-label col-xs-3">マッチング希望日時</label>
+							<div class="col-xs-7">
+								<%= f.date_field :match_time, class: 'form-control' %>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="need_text" class="control-label col-xs-3">本文</label>
+							<div class="col-xs-7">
+							<%= f.text_area :need_text, rows:'15', class: "form-control"%>
+							</div>
+						</div>
+							<%= f.hidden_field :need_number, :value => rand(1..9).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s %>
+						<div><%= f.submit '登録', class: "btn btn-primary" %></div>
+					<% end %>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
-<div class="form-group">
-	<label for="need_text" class="control-label col-xs-3">本文</label>
-	<div class="col-xs-7">
-		<%= f.text_field :need_text, class: 'form-control' %>
-	</div>
-</div>
-<div class="form-group">
-	<label for="match_time" class="control-label col-xs-3">マッチング希望日時</label>
-	<div class="col-xs-7">
-		<%= f.date_field :match_time, class: 'form-control' %>
-	</div>
-</div>
-<div>
-	<h4>ニーズ募集地域の選択</h4>
-	<%= f.collection_select :place_field_id, @place_field, :id, :place, prompt: "選択する" %>
-</div>
-<div class="form-group">
-	<label for="place" class="control-label col-xs-3">希望する商談場所</label>
-	<div class="col-xs-7">
-		<%= f.text_field :place, class: 'form-control' %>
-	</div>
-</div>
-	<%= f.submit '登録', class: "btn btn-primary" %>
-<% end %>
 </div>

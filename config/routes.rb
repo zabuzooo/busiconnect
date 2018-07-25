@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   # needsのルート
   resources :needs
   get 'needs/search' => 'needs#search'
   root 'needs#top'
+  get '/introduction' => 'needs#introduction'
 
   # unsubscribe_commentsのルート
   get 'unsubscribe_comments/new' => 'unsubscribe_comments#new'
@@ -10,8 +12,13 @@ Rails.application.routes.draw do
 
   # usersのルート
   get 'users/completion' => 'users#completion'
-  devise_for :users
+
   resources :users, only: [:index, :show, :edit, :update]
 
+    # テスト
+  post '/test/:id' => 'matchings#create', as: 'test'
+  resources :matchings
+
+  get 'user_company/:id' => 'users#company', as: 'company'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

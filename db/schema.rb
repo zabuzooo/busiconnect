@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180712094944) do
+ActiveRecord::Schema.define(version: 20180722021800) do
 
   create_table "matchings", force: :cascade do |t|
     t.string "matching_message"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180712094944) do
     t.integer "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "matching_s", default: 0
   end
 
   create_table "needs", force: :cascade do |t|
@@ -34,16 +35,37 @@ ActiveRecord::Schema.define(version: 20180712094944) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "place_field_id"
+    t.string "need_number"
+    t.integer "purpose_id"
   end
 
   create_table "place_fields", force: :cascade do |t|
     t.string "place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "place_m"
+  end
+
+  create_table "purposes", force: :cascade do |t|
+    t.string "purpose_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "settlements", force: :cascade do |t|
+    t.string "settlement_account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "statuses", force: :cascade do |t|
     t.string "matching_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "type_industry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,6 +97,11 @@ ActiveRecord::Schema.define(version: 20180712094944) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "place_field_id"
+    t.string "anuual"
+    t.string "employment"
+    t.string "pr"
+    t.integer "settlement_id"
+    t.integer "type_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
