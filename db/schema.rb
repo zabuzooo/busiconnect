@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180722021800) do
+ActiveRecord::Schema.define(version: 20180725081610) do
 
   create_table "matchings", force: :cascade do |t|
     t.string "matching_message"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180722021800) do
     t.integer "place_field_id"
     t.string "need_number"
     t.integer "purpose_id"
+    t.string "image_id"
   end
 
   create_table "place_fields", force: :cascade do |t|
@@ -102,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180722021800) do
     t.string "pr"
     t.integer "settlement_id"
     t.integer "type_id"
+    t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

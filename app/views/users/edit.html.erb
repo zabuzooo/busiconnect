@@ -86,6 +86,12 @@
         <td><%= f.collection_select(:type_id, Type.all, :id, :type_industry, prompt: "選択する") %></td>
       </div>
     </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :画像,class: "label_name" %><br /></td>
+        <td><%= f.attachment_field :image %></td>
+      </div>
+    </tr>
   </table>
 
   <div class="actions">

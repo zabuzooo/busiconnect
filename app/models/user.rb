@@ -10,4 +10,5 @@ class User < ApplicationRecord
   belongs_to :place_field
   belongs_to :settlement
   belongs_to :type
+  attachment :image
 end

@@ -43,7 +43,12 @@
                 <%= f.date_field :match_time, class: 'form-control' %>
               </div>
             </div>
-
+            <div class="form-group">
+              <label for="match_time" class="control-label col-xs-3">イメージ画像を添付する（任意）</label>
+              <div class="col-xs-7">
+                <%= f.attachment_field :image %>
+              </div>
+            </div>
             <div class="form-group">
               <label for="need_text" class="control-label col-xs-3">本文</label>
               <div class="col-xs-7">

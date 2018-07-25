@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # needsのルート
   resources :needs
   get 'needs/search' => 'needs#search'
-  root 'needs#top'
+  root 'needs#index'
   get '/introduction' => 'needs#introduction'
 
   # unsubscribe_commentsのルート
