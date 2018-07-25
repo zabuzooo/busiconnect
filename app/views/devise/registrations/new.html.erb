@@ -46,6 +46,18 @@
         </tr>
         <tr>
           <div class="field">
+            <td class="td_color"><%= f.label :決算内容,class: "label_name" %><br /></td>
+            <td><%= f.collection_select(:settlement_id, Settlement.all, :id, :settlement_account, prompt: "選択する") %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
+            <td class="td_color"><%= f.label :業種,class: "label_name" %><br /></td>
+            <td><%= f.collection_select(:type_id, Type.all, :id, :type_industry, prompt: "選択する") %></td>
+          </div>
+        </tr>
+        <tr>
+          <div class="field">
             <td class="td_color"><%= f.label :主要活動地域,class: "label_name" %><br /></td>
             <td><%= f.collection_select(:place_field_id, PlaceField.all, :id, :place, prompt: "選択する") %></td>
           </div>

@@ -1,0 +1,9 @@
+<div>最終編集日：<%=@user.updated_at.strftime('%Y/%m/%d')%></div>
+<div>会社名：<%=@user.user_name%></div>
+<div>業種：<%=@user.type.type_industry%></div>
+<div>住所：<%=@user.address%></div>
+<div>主要活動エリア：<%=@user.place_field.place%></div>
+<div>年商：<%=@user.anuual%></div>
+<div>決算内容：<%=@user.settlement.settlement_account%></div>
+<div>従業員数：<%=@user.employment%></div>
+<div>会社紹介：<%=@user.pr%></div>

@@ -1,48 +1,59 @@
-<div>
-  <h2 class="useredit_headline">ニーズ編集 </h2>
-</div>
-  <% if @need.errors.full_messages %>
-    <div class="errors_message"><% @need.errors.full_messages.each do |message| %></div>
-      <%= message %>
-    <% end %>
-  <% end %>
+<div class="need_new_back">
+  <div class="container need_new_back_mask">
+    <div class="row">
+      <div class="col-md-offset-1 col-lg-10"><div>
+        <h2 class="useredit_headline">ニーズ編集 </h2>
+        </div>
+        <% if @need.errors.full_messages %>
+          <div class="errors_message">
+            <% @need.errors.full_messages.each do |message| %>
+          </div>
+            <%= message %>
+          <% end %>
+        <% end %>
 
-<%= form_for(@need) do |f| %>
-  <table class="edit_table" border="1">
-    <tr>
-      <div class="filed">
-        <td class="td_color"><%= f.label :タイトル,class: "label_name" %><br /></td>
-        <td><%= f.text_field :need_title%></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="field">
-        <td class="td_color"><%= f.label :本文,class: "label_name" %><br /></td>
-        <td><%= f.text_field :need_text %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="field">
-        <td class="td_color"><%= f.label :マッチング希望時期,class: "label_name" %><br /></td>
-        <td><%= f.date_field :match_time %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="field">
-        <td class="td_color"><%= f.label :ニーズ募集地域,class: "label_name" %><br /></td>
-        <td><%= f.collection_select :place_field_id, @place_field, :id, :place, prompt: "選択する" %></td>
-      </div>
-    </tr>
-    <tr>
-      <div class="field">
-        <td class="td_color"><%= f.label :希望する商談場所,class: "label_name" %><br /></td>
-        <td><%= f.text_field :place %></td>
-      </div>
-    </tr>
+          <%= form_for @need, html: {class: 'form-horizontal'} do |f| %>
+            <div class="form-group">
+              <label for="need_title" class="control-label col-xs-3">タイトル</label>
+              <div class="col-xs-7">
+                <%= f.text_field :need_title, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="purpose_id" class="control-label col-xs-3">目的の選択</label>
+              <div class="col-xs-7">
+                <%= f.collection_select :purpose_id, @purpose, :id, :purpose_date, prompt: "選択する" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="place_field_id" class="control-label col-xs-3">ニーズ募集地域の選択</label>
+              <div class="col-xs-7">
+              <%= f.collection_select :place_field_id, @place_field, :id, :place_m, prompt: "選択する" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="place" class="control-label col-xs-3">希望する商談場所</label>
+              <div class="col-xs-7">
+                <%= f.text_field :place, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="match_time" class="control-label col-xs-3">マッチング希望日時</label>
+              <div class="col-xs-7">
+                <%= f.date_field :match_time, class: 'form-control' %>
+              </div>
+            </div>
 
-  </table>
-
-  <div class="actions">
-    <%= f.submit "編集", class:"edit_btn" %>
+            <div class="form-group">
+              <label for="need_text" class="control-label col-xs-3">本文</label>
+              <div class="col-xs-7">
+              <%= f.text_area :need_text, rows:'15', class: "form-control"%>
+              </div>
+            </div>
+              <%= f.hidden_field :need_number, :value => rand(1..9).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s %>
+            <div><%= f.submit '編集', class: "btn btn-primary" %></div>
+          <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

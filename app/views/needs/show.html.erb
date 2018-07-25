@@ -1,13 +1,61 @@
+<div>識別番号：<%= @need.need_number %></div>
+<div>投稿者名：<%= @need.user.user_name %></div>
+<div>目的：<%= @need.purpose.purpose_date %></div>
 <div>ニーズのタイトル：<%= @need.need_title %></div>
 <div>ニーズの本文：<%= @need.need_text %></div>
 <div>ニーズ掲載日：<%= @need.created_at.strftime('%Y/%m/%d')  %></div>
 <div>マッチング希望時期：<%= @need.match_time %></div>
 <div>希望商談場所：<%= @need.place %></div>
+<p>企業情報欄...</p>
 
 <% if @need.delete_flag == false && @need.user_id == current_user.id %>
-	<a><%= link_to 'ニーズを編集', edit_need_path(@need) %></a>
+	<a><%= link_to 'ニーズを編集', edit_need_path(@need), class: 'btn btn-sm btn-info' %></a>
 	<a><%= link_to 'ニーズを削除', need_path(@need), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "このニーズを削除しますか？"} %></a>
 <% end %>
 <% if  @need.delete_flag == true %>
 	<div style="color: red">削除済みのニーズです</div>
 <% end %>
+
+<!-- tuika -->
+ <% if @need.user_id != current_user.id %>
+<br>
+  <div id="follow_form">
+     	<%= form_for(current_user.matchings.build(id: @need.id), url: test_path) do |f| %>
+  			<div><%= f.hidden_field :id %></div>
+  			<div><%= f.text_area :matching_message, rows:'5', class: 'form-control',:size => '50', placeholder: 'マッチング申請するにあたりメッセージを入力してください' %></div>
+  			<%= f.submit "マッチング申請する", class: "btn btn-large btn-primary follow-btn" %>
+		<% end %>
+
+  </div>
+<% end %>
+
+<br><br>
+
+	<p>受信しているマッチング申請</p>
+	<% @mt.each do |m| %>
+
+		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+		<div>名前:<%= m.user.user_name %></div>
+		<div>メッセージ:<%= m.matching_message %></div>
+		<%= link_to "企業詳細",company_path(m.user_id) %>
+
+		<% if m.matching_s ==0 && m.need.user_id == current_user.id %>
+			<div><%= link_to '許可', matching_path(m), method: :patch, class: 'btn btn-sm btn-info', data: {confirm: "本当に許可しますか？"} %>
+			\	<%= link_to '拒否', matching_path(m), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "本当に拒否しますか？"} %><div>
+		<% elsif m.matching_s ==0 && m.user_id == current_user.id %>
+			<p>マッチング申請中</p>
+		<% elsif m.matching_s ==1 && m.need.user_id == current_user.id %>
+			<p>マッチング許可が完了しました</p>
+			<p><%=m.user.user_name%>さんのメールアドレス：<%=m.user.email%></p>
+		<% elsif m.matching_s ==1 && m.user_id == current_user.id %>
+			<p>マッチングが許可されました</p>
+			<p><%=m.need.user.user_name%>さんのメールアドレス：<%=m.need.user.email%></p>
+		<% elsif m.matching_s ==2 && m.need.user_id == current_user.id  %>
+			<p>拒否済みの申請です</p>
+		<% elsif m.matching_s ==2 && m.user_id == current_user.id  %>
+			<p>マッチングが拒否されました...</p>
+		<% end %>
+		<div>___________________________________________</div>
+
+
+	<% end %>

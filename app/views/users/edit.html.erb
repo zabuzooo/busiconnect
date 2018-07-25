@@ -53,6 +53,41 @@
     </tr>
   </table>
 
+<!-- 会社情報の登録 -->
+<br>
+    <table class="edit_table" border="1">
+    <tr>
+      <div class="filed">
+        <td class="td_color"><%= f.label :会社説明,class: "label_name" %><br /></td>
+        <td><%= f.text_field :pr%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="filed">
+        <td class="td_color"><%= f.label :年商,class: "label_name" %><br /></td>
+        <td><%= f.text_field :anuual%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="filed">
+        <td class="td_color"><%= f.label :従業員数,class: "label_name" %><br /></td>
+        <td><%= f.text_field :employment%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :決算内容,class: "label_name" %><br /></td>
+        <td><%= f.collection_select(:settlement_id, Settlement.all, :id, :settlement_account, prompt: "選択する") %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :業種,class: "label_name" %><br /></td>
+        <td><%= f.collection_select(:type_id, Type.all, :id, :type_industry, prompt: "選択する") %></td>
+      </div>
+    </tr>
+  </table>
+
   <div class="actions">
     <%= f.submit "編集", class:"edit_btn" %>
   </div>

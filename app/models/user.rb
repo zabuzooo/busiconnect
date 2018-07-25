@@ -6,5 +6,8 @@ class User < ApplicationRecord
 
   has_one :unsubscribe_comment
   has_many :needs
+  has_many :matchings
   belongs_to :place_field
+  belongs_to :settlement
+  belongs_to :type
 end

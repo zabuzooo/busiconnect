@@ -1,64 +1,132 @@
-<div>
-	<table class="table table-striped">
+<div class="col-md-offset-1 col-lg-4" style="margin-top: 40px;">
+	◇ ユーザー情報
+  <table class="table table-striped">
 		<tr>
-			<td class="td_user"><h4>名前</h4></td><td><h4 class="td_user_text"><%= @user.user_name %></h4></td>
+			<td class="col-lg-4"><h4>会社名</h4></td>
+      <td><h4 class="td_user_text"><%= @user.user_name %></h4></td>
 		</tr>
+    <tr>
+      <td class="col-lg-4"><h4>所在地</h4></td>
+      <td ><h4 class="td_user_text"><%= @user.address %></h4></td>
+    </tr>
 		<tr>
-			<td class="td_user"><h4>かな</h4></td><td><h4 class="td_user_text"><%= @user.user_phonetic %></h4></td>
-		</tr>
-		<tr>
-			<td class="td_user"><h4>郵便番号</h4></td><td><h4 class="td_user_text"><%= @user.postal %></h4></td>
-		</tr>
-		<tr>
-			<td class="td_user"><h4>住所</h4></td><td><h4 class="td_user_text"><%= @user.address %></h4></td>
-		</tr>
-		<tr>
-			<td class="td_user"><h4>主要活動地域</h4></td><td><h4 class="td_user_text"><%= @user.place_field.place %></h4></td>
-		</tr>
-		<tr>
-			<td class="td_user"><h4>電話番号</h4></td><td><h4 class="td_user_text"><%= @user.tell %></h4></td>
-		</tr>
-		<tr>
-			<td class="td_user"><h4>メールアドレス</h4></td><td ><h4 class="td_user_text"><%= @user.email %></h4></td>
+			<td class="col-lg-4"><h4>メールアドレス</h4></td>
+      <td ><h4 class="td_user_text"><%= @user.email %></h4></td>
 		</tr>
 	</table>
-</div>
-<div>
-	<%= link_to "登録情報を変更する",edit_user_path ,class:'btn btn-info' %>
-		<br>
-	<% if @user.delete_flag == false%>
-		<br>
-		<%= link_to "退会希望方はこちら",unsubscribe_comments_new_path  %>
 
-	<% else %>
-		<h2>退会コメント</h2>
-		<div class="comment"><%= @unsubscribe_comment.comment %></div>
-	<% end %>
-</div>
-<br>
+  ◇ 会社情報（抜粋）
+  <table class="table table-striped">
 
-<div class="user-box clearfix col-lg-8">
-      <h2 class="user-box-headline">登録したニーズ</h2>
+    <tr>
+      <td class="col-lg-4"><h4>業種</h4></td>
+      <td><h4 class="td_user_text"><%= @user.type.type_industry %></h4></td>
+    </tr>
+    <tr>
+      <td class="col-lg-4"><h4>年商</h4></td>
+      <td><h4 class="td_user_text"><%= @user.anuual %></h4></td>
+    </tr>
+    <tr>
+      <td class="col-lg-4"><h4>従業員数</h4></td>
+      <td><h4 class="td_user_text"><%= @user.employment %></h4></td>
+    </tr>
+    <tr>
+      <td class="col-lg-4"><h4>決算内容</h4></td>
+      <td><h4 class="td_user_text"><%= @user.settlement.settlement_account %></h4></td>
+    </tr>
+    <tr>
+      <td class="col-lg-4"><h4>主要エリア</h4></td>
+      <td><h4 class="td_user_text"><%= @user.place_field.place %></h4></td>
+    </tr>
+    <tr>
+      <td class="col-lg-4"><h4>会社説明</h4></td>
+      <td><h4 class="td_user_text"><%= @user.pr %></h4></td>
+    </tr>
+  </table>
+  <div>
+    <% if @user.delete_flag == false && @user.id == current_user.id%>
+    <%= link_to "登録情報を変更する",edit_user_path ,class:'btn btn-info' %>
+    <br>
+    <%= link_to "退会希望の方はこちら",unsubscribe_comments_new_path  %>
+
+    <% end %>
+  </div>
+  <div><%= link_to "会社情報を全て表示",company_path %></div>
+</div>
+
+
+<div class="col-md-offset-1 col-lg-5">
+<h2 class="user-box-headline">登録したニーズ</h2>
       <% if @needs %>
         <% @needs.each do |need| %>
-        	<div>
-            	<h4>掲載日:<%= need.created_at.strftime('%Y/%m/%d') %></h4>
-            </div>
-         	<div class="order_content_3">
-            	<h4>タイトル:<%= need.need_title %></h4>
-          	<div class="order_content_4">
-            	<h4>マッチング状況:</h4>
-          	</div>
+          <div>
+            <h4>掲載日:<%= need.created_at.strftime('%Y/%m/%d') %></h4>
+          </div>
+          <div>
+              <h4>タイトル:<%= need.need_title %></h4>
+          </div>
+          <div>
+            <h4>マッチング状況:</h4>
+          </div>
 
             <% if need.delete_flag == true %>
-				<div style="color: red">削除済みのニーズです</div>
-			<% else %>
-			<%= link_to "詳細", need_path %>
-			<% end %>
-            <h4>___________________________</h4>
+        <div style="color: red">削除済みのニーズです</div>
+      <% else %>
+      <%= link_to "詳細", need_path(need) %>
+      <div style="border-bottom: solid 1px;"></div>
+      <% end %>
 
         <% end %>
       <% else %>
         <h5>表示する履歴はありません</h5>
       <% end %>
+<br><br>
+</div>
+
+<!-- すべてのユーザーに表示されているので@matchings0の値を変えなきゃいけない　@matchings0 = @matchings0.where(need.user_id: current_user.id)にできれば良い -->
+<div class="col-lg-7" style="margin-left: 30px;">
+  <div>
+      <h2>未返答のマッチング申請</h2>
+      <% if @matchings0 %>
+        <% @matchings0.each do |m| %>
+        	<div>申請されたニーズ:<%= m.need.need_title %></div>
+        	<div>申請日:<%= m.created_at.strftime('%Y/%m/%d') %></div>
+            <div>申請者:<%= m.user.user_name %></div>
+            <div>コメント:<%= m.matching_message %></div>
+        	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
+            <div><%= link_to "申請者情報", user_path(m.user_id) %></div>
+            <h4>___________________________</h4>
+      	<% end %>
+      <% end %>
+  </div>
+
+  <div>
+      <h2>許可したマッチング申請</h2>
+      <% if @matchings1 %>
+        <% @matchings1.each do |m| %>
+        	<div>申請されたニーズ:<%= m.need.need_title %></div>
+        	<div>許可した日:<%= m.updated_at.strftime('%Y/%m/%d') %></div>
+            <div>申請者:<%= m.user.user_name %></div>
+            <div>連絡先<%=m.user.email%></div>
+            <div>コメント:<%= m.matching_message %></div>
+        	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
+            <div><%= link_to "申請者情報", user_path(m.user_id) %></div>
+            <h4>___________________________</h4>
+      	<% end %>
+      <% end %>
+  </div>
+  <div>
+      <h2>拒否したマッチング申請</h2>
+      <% if @matchings2 %>
+        <% @matchings2.each do |m| %>
+        	<div>申請されたニーズ:<%= m.need.need_title %></div>
+        	<div>拒否した日:<%= m.updated_at.strftime('%Y/%m/%d') %></div>
+            <div>申請者:<%= m.user.user_name %></div>
+            <div>コメント:<%= m.matching_message %></div>
+        	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
+            <div><%= link_to "申請者情報", user_path(m.user_id) %></div>
+            <h4>___________________________</h4>
+      	<% end %>
+      <% end %>
+  </div>
 </div>
