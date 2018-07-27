@@ -61,6 +61,8 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'bootstrap-sass'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'ransack'
 gem 'rails-i18n'
+gem 'font-awesome-rails'
 
