@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		@notifications = current_user.notifications
 		@unsubscribe_comment = UnsubscribeComment.find_by(user_id: params[:id])
 		@needs = Need.where(user_id: params[:id])
 		@matchings0 = Matching.where(matching_s:0)

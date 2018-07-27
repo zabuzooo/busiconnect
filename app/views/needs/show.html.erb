@@ -1,23 +1,102 @@
-<div><%= attachment_image_tag @need, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
-<div>識別番号：<%= @need.need_number %></div>
-<div>投稿者名：<%= @need.user.user_name %></div>
-<div>目的：<%= @need.purpose.purpose_date %></div>
-<div>ニーズのタイトル：<%= @need.need_title %></div>
-<div>ニーズの本文：<%= @need.need_text %></div>
-<div>ニーズ掲載日：<%= @need.created_at.strftime('%Y/%m/%d')  %></div>
-<div>マッチング希望時期：<%= @need.match_time %></div>
-<div>希望商談場所：<%= @need.place %></div>
-<p>企業情報欄...</p>
+<div class="container">
+  	<div class="row">
+    	<div class="col-lg-12" style="margin: 50px 0 30px 0; padding:10px;  border-top:solid #6f94fd 2px; border-bottom:solid #6f94fd 2px;">
+			<div>
+				<h2 style="color: #0000c5; font-weight: bold;">
+					<%= @need.need_title %>
+				</h2>
+			</div>
+			<div>
+				<h5 style="display: inline-block; padding:2px; border: solid 1px; color: #808080db; border-radius: 3px;">
+					目的：<%= @need.purpose.purpose_date %>
+				</h5>
+				<h6 style="margin: 0 30px; display: inline-block;">
+					識別番号：<%= @need.need_number %>
+				</h6>
+			</div>
+		</div>
 
-<% if @need.delete_flag == false && @need.user_id == current_user.id %>
-	<a><%= link_to 'ニーズを編集', edit_need_path(@need), class: 'btn btn-sm btn-info' %></a>
-	<a><%= link_to 'ニーズを削除', need_path(@need), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "このニーズを削除しますか？"} %></a>
-<% end %>
-<% if  @need.delete_flag == true %>
-	<div style="color: red">削除済みのニーズです</div>
-<% end %>
 
+<div class="col-lg-7" style="padding-bottom: 20px;">
+	<div>◇ ニーズ情報</div>
+	<table class="table table-striped" style="margin-top: 10px;">
+		<tr>
+			<td class="col-lg-4"><h4>掲載日</h4></td>
+      		<td><h4 class="td_user_text"><%= @need.created_at.strftime('%Y/%m/%d') %></h4></td>
+		</tr>
+		<tr>
+			<td class="col-lg-4"><h4>募集地域</h4></td>
+      		<td ><h4 class="td_user_text"><%= @need.place_field.place_m %></h4></td>
+		</tr>
+		<tr>
+			<td class="col-lg-4"><h4>希望商談場所</h4></td>
+      		<td ><h4 class="td_user_text"><%= @need.place %></h4></td>
+		</tr>
+		<tr>
+			<td class="col-lg-4"><h4>マッチング希望時期</h4></td>
+      		<td ><h4 class="td_user_text"><%= @need.match_time %>ごろ</h4></td>
+		</tr>
+	</table>
+</div>
+
+<div class="col-md-offset-1 col-lg-4" style="margin-top: 10px;">
+	<%= attachment_image_tag @need, :image, :fill, 200, 200, format: 'jpg', fallback: 'no_image.jpg', :size => '200x200' %>
+</div>
+
+<div class="col-lg-12">
+	<p style="color: red; padding-top: 80px;">※ビジこねくとでは、利用者からご提供いただいた情報の内容については審査しておりません。<br>情報の正確性、信頼性については、ご自身でご判断ください。</p>
+</div>
+
+<div class="col-lg-12" style="margin-top: 30px; border-top:solid gray 2px; border-bottom:solid gray 2px; background-color: #a6ceff;">
+	<h5 style="font-weight: bold;">内容</h5>
+</div>
+
+<div class="col-lg-12" style="padding: 20px 30px;">
+	<div><%= @need.need_text %></div>
+</div>
+
+<div class="col-lg-12">
+	<% if @need.delete_flag == false && @need.user_id == current_user.id %>
+		<a><%= link_to 'ニーズを編集', edit_need_path(@need), class: 'btn btn-sm btn-info' %></a>
+		<a><%= link_to 'ニーズを削除', need_path(@need), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "このニーズを削除しますか？"} %></a>
+	<% end %>
+	<% if  @need.delete_flag == true %>
+		<div style="color: red">削除済みのニーズです</div>
+	<% end %>
+</div>
+
+<div class="col-lg-12" style="margin-top: 30px; border-top:solid gray 2px; border-bottom:solid gray 2px; background-color: #a6ceff;">
+	<h5 style="font-weight: bold;">掲載企業情報</h5>
+</div>
+<div class="col-lg-12" style="margin-bottom: 30px;">
+	<div class="col-lg-7" style="margin-top: 50px;">
+		<table class="table table-striped">
+		<tr>
+			<td class="col-lg-4"><h4>業種</h4></td>
+      		<td><h4 class="td_user_text"><%= @need.user.type.type_industry %></h4></td>
+		</tr>
+		<tr>
+			<td class="col-lg-4"><h4>主要な活動エリア</h4></td>
+      		<td><h4 class="td_user_text"><%= @need.user.place_field.place %></h4></td>
+		</tr>
+		<tr>
+      		<td class="col-lg-4"><h4>投稿企業名</h4></td>
+      		<td ><h4 class="td_user_text"><%= @need.user.user_name %></h4></td>
+    	</tr>
+		<tr>
+			<td class="col-lg-4"><h4>従業員数</h4></td>
+      		<td ><h4 class="td_user_text"><%= @need.user.employment %></h4></td>
+		</tr>
+		</table>
+		<%=link_to "会社詳細情報へ",company_path(@need.user_id) %>
+	</div>
+	<div class="col-md-offset-1 col-lg-4" style="margin-top: 50px;">
+		<%= attachment_image_tag @need.user, :image, :fill, 200, 200, format: 'jpg', fallback: 'no_image.jpg', :size => '200x200' %>
+	</div>
+</div>
 <!-- tuika -->
+
+<div class="col-lg-12" style="margin-top: 30px; border-top:solid gray 2px;">
  <% if @need.user_id != current_user.id %>
 <br>
   <div id="follow_form">
@@ -29,7 +108,6 @@
 
   </div>
 <% end %>
-
 <br><br>
 
 	<p>受信しているマッチング申請</p>
@@ -42,7 +120,7 @@
 
 		<% if m.matching_s ==0 && m.need.user_id == current_user.id %>
 			<div><%= link_to '許可', matching_path(m), method: :patch, class: 'btn btn-sm btn-info', data: {confirm: "本当に許可しますか？"} %>
-			\	<%= link_to '拒否', matching_path(m), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "本当に拒否しますか？"} %><div>
+			\	<%= link_to '拒否', matching_path(m), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "本当に拒否しますか？"} %></div>
 		<% elsif m.matching_s ==0 && m.user_id == current_user.id %>
 			<p>マッチング申請中</p>
 		<% elsif m.matching_s ==1 && m.need.user_id == current_user.id %>
@@ -60,3 +138,6 @@
 
 
 	<% end %>
+  </div>
+</div>
+</div>

@@ -1,28 +1,33 @@
 <div class="container">
 	<div class="row">
-		<div class="col-lg-2">
-				<div style="margin-top:30px; height: 900px; border:solid #3254d261 2px;">絞り込み検索実装予定</div>
+		<div class="col-lg-3">
+			<%= render 'needs/search_and_sidebar' %>
 		</div>
-		<div class="col-lg-10">
-		<div style="float: right; width: 200px; background-color: #1bde9678; margin:20px;">検索スペース</div>
-			<div style="margin-top:60px; border:solid #1bde9678 3px;">
-				<div style="width: 100%;height: 100px;border-bottom: solid #1bde9678 2px;"></div>
-				<% @needs.order("created_at DESC").first(5).each do |f| %>
-				<div class="need_box">
-					<div><%= attachment_image_tag f, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
-					<div>識別番号：<%= f.need_number %></div>
-					<div>タイトル：<%= f.need_title %></div>
-					<div>マッチング希望時期：<%= f.match_time %></div>
-					<div>希望商談場所：<%= f.place %></div>
-					<div>マッチング申請のカウント表示</div>
-					<%= link_to "詳細へ",need_path(f) %>
-						<% if f.delete_flag == true %>
-							<div style="color: red">↑削除済みのニーズです</div>
-						<% end %>
+
+		<div class="col-lg-9">
+			<div style="margin-top:30px; border-top: solid gray 2px; ">
+				<div style="width: 100%;height: 170px;border-bottom: solid gray 2px;">ここに絞り込み検索機能入れたい。</div>
+				<% @needs.order("created_at DESC").each do |f| %>
+				<div class="need_box col-lg-12">
+					<div class="col-lg-3" style="margin: 10px 0 30px 0">
+					<%= link_to need_path(f), :style=>"text-decoration:none; color:black;" do %>
+						<%= attachment_image_tag f, :image, :fill, 150, 150, format: 'jpg', fallback: 'no_image.jpg', :size => '150x150' %>
+					</div>
+					<div class="col-lg-9" style="overflow: hidden;">
+						<h3 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= f.need_title %></h3>
+
+						<h5 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
+							<%= f.purpose.purpose_date %>
+						</h5>
+						<div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= f.need_number %></div>
+						<div style="margin-top: 12px;">登録日　：<%= f.created_at.strftime('%Y年%m月%d日')%>(更新日：<%= f.updated_at.strftime('%Y年%m月%d日')%>)</div>
+						<div>募集地域：<p style="color: orange; display: inline-block;"><%= f.place_field.place_m %></p></div>
+						<div style="margin-top: 10px"><span class="glyphicon glyphicon-envelope"></span> 受信したマッチング申請：<%= f.matchings.count %>件（マッチング：<%= f.matchings.where(matching_s: 1).count %>件）</div>
+					<%end%>
+					</div>
 				</div>
 				<% end %>
 			</div>
-			<div style="text-align: left; margin: 20px 0 0 20px"><%=link_to "ニーズ一覧へ", needs_path,class:'btn btn-sm btn-info'%></div>
 		</div>
 		<!-- ●日本地図 -->
 		<div class="col-md-12" style="margin-top: 50px;">

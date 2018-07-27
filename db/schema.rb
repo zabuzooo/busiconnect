@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180725081610) do
+ActiveRecord::Schema.define(version: 20180726114533) do
 
   create_table "matchings", force: :cascade do |t|
     t.string "matching_message"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 20180725081610) do
     t.string "need_number"
     t.integer "purpose_id"
     t.string "image_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "notified_by_id"
+    t.integer "need_id"
+    t.string "notified_type"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["need_id"], name: "index_notifications_on_need_id"
+    t.index ["notified_by_id"], name: "index_notifications_on_notified_by_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "place_fields", force: :cascade do |t|
