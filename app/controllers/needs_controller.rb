@@ -26,6 +26,7 @@ class NeedsController < ApplicationController
     @delete_flag_needs = Need.all
     @needs = @delete_flag_needs.where(delete_flag: false)
     @types = Type.all
+    @place_fields = PlaceField.all
     @search = Need.ransack(params[:q])
   end
 
@@ -56,6 +57,7 @@ class NeedsController < ApplicationController
     @delete_flag_search = @search_needs.where(delete_flag: false)
     @needs = @delete_flag_search.page(params[:page]).reverse_order
     @types = Type.all
+    @place_fields = Place_field.all
   end
 
   def introduction

@@ -11,7 +11,7 @@
 				<div>
 					<h3 class="sarch-word">検索ワード"<%= params[:q][:need_title_or_need_text_cont] %>"</h3>
 					<%if params[:q][:need_title_or_need_text_cont] == "" %>
-						<div style="margin-left: 10px; color: red;">※ 検索ワードの指定が無いため、全商品を表示しています</div>
+						<div style="margin-left: 10px; color: red;">※ 検索ワードの指定が無いため、全てのニーズを表示しています</div>
 					<% end %>
 				</div>
 			<% if @needs.present? %>
@@ -42,9 +42,7 @@
 		</div>
 
 				<div class="col-md-12" style="margin-top: 50px;">
-			<div class="col-md-5" style="border:solid gray 1px; margin: 20px 0 50px 0; height: 500px;">
-				<p>同じ業種をランダム表示とか</p>
-			</div>
+
 			<div class="col-md-7">
 				<h3>地域ごとに探す</h3>
 					<ul id="imagemap">
@@ -72,6 +70,10 @@
 						<li><a href="kyushu/fukuoka.html">九州</a></li>
 						<li><a href="okinawa/okinawa.html">沖縄</a></li>
 					</ul>
+			</div>
+
+			<div class="col-md-5" style="border:solid gray 1px; margin: 20px 0 50px 0; height: 500px;">
+				<p>同じ業種をランダム表示とか</p>
 			</div>
 		</div>
 	</div>

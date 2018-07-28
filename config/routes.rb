@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'notifications/:id/link_through', to: 'notifications#link_through',as: :link_through
   get 'notifications/link_through'
   resources :types, only: [:show]
+  resources :place_fields, only: [:show]
 
   get 'user_company/:id' => 'users#company', as: 'company'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
