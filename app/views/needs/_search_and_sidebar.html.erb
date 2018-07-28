@@ -23,3 +23,16 @@
 		<% end %>
 	</ul>
 </div>
+
+<div style="height: auto; border-left:solid #4cafa1 2px; border-bottom:solid #4cafa1 2px; border-right: solid #4cafa1 2px;">
+	<div style="color: white;font-weight: bold;font-size: 20px;height: 32px;background-color: #18377d;padding-left: 5px;">募集地域で探す</div>
+	<ul class="genre-list">
+		<% @place_fields.each do |f| %>
+			<%=link_to place_field_path(f.id), :style=>"text-decoration: none;" do %>
+				<li class="genre-list-item">
+					<%= f.place_m %>
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>
