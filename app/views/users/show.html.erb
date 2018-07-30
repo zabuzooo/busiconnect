@@ -75,7 +75,7 @@
         <h4 style="font-weight: bold;position: relative;right: 15px;border-bottom: dotted #1d5c8c 2px;width: 100px;color: #1c4984;padding-bottom: 2px;">申請状況</h4>
         <h5 style="font-weight: bold; color: #a0460d;">◇返答待ちのマッチング申請</h5>
         <% if @matchings0.present? %>
-          <% @matchings0.each do |m| %>
+          <% @matchings0.order("created_at DESC").each do |m| %>
             <div class="need_box col-lg-12">
               <div class="col-lg-3" style="margin: 10px 0 20px 0">
                 <%= link_to need_path(m.need), :style=>"text-decoration:none; color:black;" do %>
@@ -93,10 +93,10 @@
                 <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
                 <%end%>
               </div>
-            </div>
-                <% if m.need.delete_flag == true %>
+              <% if m.need.delete_flag == true %>
                   <div style="color: red">削除済みのニーズです</div>
                 <% end %>
+            </div>
           <% end %>
 
         <% else %>
@@ -107,7 +107,7 @@
       <div style="margin-left: 12px;">
           <h5 style="font-weight: bold; color: #a0460d;">◇許可されたマッチング申請</h5>
           <% if @matchings1.present? %>
-            <% @matchings1.each do |m| %>
+            <% @matchings1.order("created_at DESC").each do |m| %>
               <div class="need_box col-lg-12">
               <div class="col-lg-3" style="margin: 10px 0 20px 0">
                 <%= link_to need_path(m.need), :style=>"text-decoration:none; color:black;" do %>
@@ -125,10 +125,10 @@
                 <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
                 <%end%>
               </div>
-            </div>
-                <% if m.need.delete_flag == true %>
+              <% if m.need.delete_flag == true %>
                   <div style="color: red">削除済みのニーズです</div>
                 <% end %>
+            </div>
           <% end %>
           <% else %>
             <div>許可された申請はありません</div>
@@ -137,7 +137,7 @@
       <div style="margin-left: 12px; ">
           <h5 style="font-weight: bold; color: #a0460d;">◇拒否されたマッチング申請</h5>
           <% if @matchings2.present? %>
-            <% @matchings2.each do |m| %>
+            <% @matchings2.order("created_at DESC").each do |m| %>
               <div class="need_box col-lg-12">
               <div class="col-lg-3" style="margin: 10px 0 20px 0">
                 <%= link_to need_path(m.need), :style=>"text-decoration:none; color:black;" do %>
@@ -155,10 +155,10 @@
                 <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
                 <%end%>
               </div>
-            </div>
-                <% if m.need.delete_flag == true %>
+              <% if m.need.delete_flag == true %>
                   <div style="color: red">削除済みのニーズです</div>
                 <% end %>
+            </div>
           <% end %>
           <% else %>
             <div>拒否された申請はありません</div>
@@ -185,13 +185,13 @@
               <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= f.need_number %></div>
               <div style="margin-top: 5px;">登録日　：<%= f.created_at.strftime('%Y年%m月%d日')%>(更新日：<%= f.updated_at.strftime('%Y年%m月%d日')%>)</div>
               <div>募集地域：<p style="color: orange; display: inline-block;"><%= f.place_field.place_m %></p></div>
-              <div style="margin: 5px 0"><span class="glyphicon glyphicon-envelope"></span> 受信したマッチング申請：<%= f.matchings.count %>件（未回答の申請：<%= f.matchings.where(matching_s: 0).count %>件）</div>
+              <div style="margin: 5px 0"><i class="fa fa-envelope"></i> 受信したマッチング申請：<%= f.matchings.count %>件（未回答の申請：<%= f.matchings.where(matching_s: 0).count %>件）</div>
             <%end%>
             </div>
-          </div>
               <% if f.delete_flag == true %>
-                <div style="color: red">削除済みのニーズです</div>
+                <div style="color: red;font-weight: bold;">削除済み</div>
               <% end %>
+          </div>
         <% end %>
         <div class="pagenate-space" style="text-align: center;">
           <%= paginate @needs, class: "pagenate" %>

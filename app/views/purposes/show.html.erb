@@ -7,7 +7,17 @@
 
 		<div class="col-lg-9">
 			<div style="margin-top:30px; border-top: solid gray 2px; ">
-				<div style="width: 100%;height: 170px;border-bottom: solid gray 2px;">ここに絞り込み検索機能とか入れたい</div>
+				<div class="need_index_back">
+					<p style="font-weight: bold;padding: 25px 0 10px 40px;font-size: 29px;color: #e4e254;font-family: serif;">
+						ビジネスマッチング促進サイト
+					</p>
+					<p style="font-weight: bold;font-size: 13px;color: #fffd8b;text-align: right;margin: 0 5% 5px 0;">
+						"ビジこねくと" は、B to B取引関係の構築を促進するための投稿データベースです
+					</p>
+					<p style="font-weight: bold;font-size: 13px;color: #fffd8b;text-align: right;margin-right: 3%;">
+						当サイトの利用方法がわからない方は<%=link_to"こちら",root_path,style:"text-decoration:none;color:red;"%>をご確認の上でご利用ください
+					</p>
+				</div>
 				<div>
 					<h3 class="sarch-word">目的："<%= @purpose.purpose_date %>"</h3>
 				</div>
@@ -27,7 +37,7 @@
 						<div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= f.need_number %></div>
 						<div style="margin-top: 12px;">登録日　：<%= f.created_at.strftime('%Y年%m月%d日')%>(更新日：<%= f.updated_at.strftime('%Y年%m月%d日')%>)</div>
 						<div>募集地域：<p style="color: orange; display: inline-block;"><%= f.place_field.place_m %></p></div>
-						<div style="margin-top: 10px"><span class="glyphicon glyphicon-envelope"></span> 受信したマッチング申請：<%= f.matchings.count %>件（マッチング：<%= f.matchings.where(matching_s: 1).count %>件）</div>
+						<div style="margin-top: 10px"><i class="fa fa-envelope fa-lg"></i> 受信したマッチング申請：<%= f.matchings.count %>件（マッチング：<%= f.matchings.where(matching_s: 1).count %>件）</div>
 					<%end%>
 					</div>
 				</div>
@@ -41,7 +51,7 @@
 			</div>
 		</div>
 
-				<div class="col-md-12" style="margin-top: 50px;">
+				<div class="col-md-12" style="margin-top: 20px;">
 
 			<div class="col-md-7">
 				<h3>募集地域ごとに探す</h3>

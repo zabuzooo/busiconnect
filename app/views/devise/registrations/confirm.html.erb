@@ -1,0 +1,93 @@
+<div class="user_confirm_container">
+  <div class="user_confirm_box">
+  <div class="headline_box">
+    <h2 class="user_confirm_headline">登録情報確認</h2>
+  </div>
+  <div class="procedure_container clearfix">
+    <div class="procedure_content_2">
+      会員情報入力
+    </div>
+    <div class="kigou">&#9654;</div>
+    <div class="procedure_content_1">
+      入力内容確認
+    </div>
+    <div class="kigou">&#9654;</div>
+    <div class="procedure_content_3">
+      登録完了
+    </div>
+  </div>
+  <div class="user_confirm_table_box">
+    <table class="user_confirm_table" border="1">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <tr>
+        <td class="td_color"><%= f.label :会社名,class: "label_name" %></td>
+        <td class="td_text"><%= @user.user_name %></td>
+        <%= f.hidden_field :user_name%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :フリガナ,class: "label_name" %></td>
+        <td class="td_text"><%= @user.user_phonetic %></td>
+        <%= f.hidden_field :user_phonetic%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :郵便番号（ハイフン無し）,class: "label_name" %></td>
+        <td class="td_text"><%= @user.postal %></td>
+        <%= f.hidden_field :postal%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :会社住所,class: "label_name" %></td>
+        <td class="td_text"><%= @user.address %></td>
+        <%= f.hidden_field :address%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :決算内容,class: "label_name" %></td>
+        <td class="td_text"><%= @user.settlement.settlement_account %></td>
+        <%= f.hidden_field :settlement_id%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :業種,class: "label_name" %></td>
+        <td class="td_text"><%= @user.type.type_industry %></td>
+        <%= f.hidden_field :type_id%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :マッチング募集地域,class: "label_name" %></td>
+        <td class="td_text"><%= @user.place_field.place_m %></td>
+        <%= f.hidden_field :place_field_id%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :電話番号（ハイフン無し）,class: "label_name" %></td>
+        <td class="td_text"><%= @user.tell %></td>
+        <%= f.hidden_field :tell%>
+      </tr>
+      <tr>
+        <td class="td_color"><%= f.label :メールアドレス,class: "label_name" %></td>
+        <td class="td_text"><%= @user.email %></td>
+        <%= f.hidden_field :email%>
+      </tr>
+      <tr>
+        <td class="td_color"><% f.label :パスワード,class: "label_name" %></td>
+        <td class="td_text"><% @user.password %></td>
+        <%= f.hidden_field :password%>
+      </tr>
+    </table>
+  </div>
+  <div class="back_actions">
+    <%= link_to "編集ページに戻る", new_user_registration_path %>
+  </div>
+  <div class="headline_box">
+    <h2 class="Agreement_headline">利用規約</h2>
+  </div>
+  <div class="Agreement">
+      利用規約
+      反社会的勢力ではないことの証明うんぬん
+  </div>
+  <div class="checkbox_container">
+    <input type="checkbox"  class="checkbox" id="agree-check"><p class="checkbox_text">規約に同意する</p>
+  </div>
+  <div class="actions">
+    <%= f.submit "登録",class: "signup_btn",id: "submit-btn" %>
+  </div>
+    <% end %>
+  </div>
+</div>
