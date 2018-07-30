@@ -1,2 +1,68 @@
-<h1>PlaceFields#show</h1>
-<p>Find me in app/views/place_fields/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<%= render 'needs/search_and_sidebar' %>
+		</div>
+
+
+		<div class="col-lg-9">
+			<div style="margin-top:30px; border-top: solid gray 2px; ">
+				<div style="width: 100%;height: 170px;border-bottom: solid gray 2px;">ここに絞り込み検索機能とか入れたい</div>
+				<div>
+					<h3 class="sarch-word">募集エリア："<%= @place_field.place_m %>"</h3>
+				</div>
+			<% if @needs.present? %>
+				<% @needs.order("created_at DESC").each do |f| %>
+				<div class="need_box col-lg-12">
+					<div class="col-lg-3" style="margin: 10px 0 30px 0">
+					<%= link_to need_path(f), :style=>"text-decoration:none; color:black;" do %>
+						<%= attachment_image_tag f, :image, :fill, 150, 150, format: 'jpg', fallback: 'no_image.jpg', :size => '150x150' %>
+					</div>
+					<div class="col-lg-9" style="overflow: hidden;">
+						<h3 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= f.need_title.truncate(26) %></h3>
+
+						<h5 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
+							<%= f.purpose.purpose_date %>
+						</h5>
+						<div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= f.need_number %></div>
+						<div style="margin-top: 12px;">登録日　：<%= f.created_at.strftime('%Y年%m月%d日')%>(更新日：<%= f.updated_at.strftime('%Y年%m月%d日')%>)</div>
+						<div>募集地域：<p style="color: orange; display: inline-block;"><%= f.place_field.place_m %></p></div>
+						<div style="margin-top: 10px"><span class="glyphicon glyphicon-envelope"></span> 受信したマッチング申請：<%= f.matchings.count %>件（マッチング：<%= f.matchings.where(matching_s: 1).count %>件）</div>
+					<%end%>
+					</div>
+				</div>
+				<% end %>
+				<div class="pagenate-space" style="text-align: center;">
+          			<%= paginate @needs, class: "pagenate" %>
+        		</div>
+			<% else %>
+				<div style="margin-left: 10px">選択した募集エリアのニーズは存在しませんでした。</div>
+			<% end %>
+			</div>
+		</div>
+
+				<div class="col-md-12" style="margin-top: 50px;">
+
+			<div class="col-md-7">
+				<h3>募集地域ごとに探す</h3>
+					<ul id="imagemap">
+						<li id="hokkaido"><a href="/place_fields/2"><span>北海道</span></a></li>
+						<li id="touhoku"><a href="/place_fields/3"><span>東北</span></a></li>
+						<li id="hokuriku"><a href="/place_fields/4"><span>北陸</span></a></li>
+						<li id="kanto"><a href="/place_fields/5"><span>関東</span></a></li>
+						<li id="tokai"><a href="/place_fields/6"><span>東海</span></a></li>
+						<li id="kansai"><a href="/place_fields/7"><span>関西</span></a></li>
+						<li id="chugoku"><a href="/place_fields/8"><span>中国</span></a></li>
+						<li id="shikoku"><a href="/place_fields/9"><span>四国</span></a></li>
+						<li id="kyushu"><a href="/place_fields/10"><span>九州</span></a></li>
+						<li id="okinawa"><a href="/place_fields/11"><span>沖縄</span></a></li>
+						<li style="position: relative; top: 380px; left: 450px; font-size: 17px"><a href="/place_fields/1">指定無し(全国)</a></li>
+					</ul>
+			</div>
+
+			<div class="col-md-5" style="border:solid gray 1px; margin: 20px 0 50px 0; height: 500px;">
+				<p>同じ業種をランダム表示とか</p>
+			</div>
+		</div>
+	</div>
+</div>

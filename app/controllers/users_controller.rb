@@ -26,10 +26,11 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@notifications = current_user.notifications
 		@unsubscribe_comment = UnsubscribeComment.find_by(user_id: params[:id])
-		@needs = Need.where(user_id: params[:id])
-		@matchings0 = Matching.where(matching_s:0)
-		@matchings1 = Matching.where(matching_s:1)
-		@matchings2 = Matching.where(matching_s:2)
+		@need = Need.where(user_id: params[:id])
+		@needs = @need.page(params[:page]).per(3)
+		@matchings0 = current_user.matchings.where(matching_s:0)
+		@matchings1 = current_user.matchings.where(matching_s:1)
+		@matchings2 = current_user.matchings.where(matching_s:2)
 	end
 
 

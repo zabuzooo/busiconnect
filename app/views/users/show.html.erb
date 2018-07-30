@@ -1,129 +1,204 @@
 <div class="col-lg-12">
-  <div class="col-md-offset-1 col-lg-4" style="margin-top: 40px;">
-  	◇ ユーザー情報
-    <table class="table table-striped">
+  <div class="col-md-offset-1 col-lg-3" style="margin-top: 50px;">
+  	<div style="font-weight: bold;font-size: 15px;"><span class="glyphicon glyphicon-user"></span> ユーザー情報</div>
+    <table class="table table-striped" style="border: solid #afafaf 1px;">
   		<tr>
-  			<td class="col-lg-4"><h4>会社名</h4></td>
-        <td><h4 class="td_user_text"><%= @user.user_name %></h4></td>
+  			<td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">会社名</h5></td>
+        <td><h5 class="td_user_text col-lg-"><%= @user.user_name %></h5></td>
   		</tr>
       <tr>
-        <td class="col-lg-4"><h4>所在地</h4></td>
-        <td ><h4 class="td_user_text"><%= @user.address %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">所在地</h5></td>
+        <td ><h5 class="td_user_text"><%= @user.address %></h5></td>
       </tr>
   		<tr>
-  			<td class="col-lg-4"><h4>メールアドレス</h4></td>
-        <td ><h4 class="td_user_text"><%= @user.email %></h4></td>
+  			<td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">メールアドレス</h5></td>
+        <td ><h5 class="td_user_text"><%= @user.email %></h5></td>
   		</tr>
   	</table>
 
-    ◇ 会社情報（抜粋）
-    <table class="table table-striped">
-    <div><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
+    <div style="margin-top: 20px;font-weight: bold;font-size: 15px;"><span class="glyphicon glyphicon-home"></span> 会社詳細情報</div>
+    <% if @user.anuual.blank? || @user.employment.blank? || @user.pr.blank? %>
+      <p style="color: red;font-size: 11px;">未入力の情報があります、<%=link_to "こちら",edit_user_path%>から入力してください。</p>
+    <% end %>
+    <table class="table table-striped" style="border: solid #afafaf 1px;" >
+    <div style="margin: 10px 20px;"><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
       <tr>
-        <td class="col-lg-4"><h4>業種</h4></td>
-        <td><h4 class="td_user_text"><%= @user.type.type_industry %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">業種</h5></td>
+        <td><h5 class="td_user_text"><%= @user.type.type_industry %></h5></td>
       </tr>
       <tr>
-        <td class="col-lg-4"><h4>年商</h4></td>
-        <td><h4 class="td_user_text"><%= @user.anuual %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;font-size: 12px;">マッチング希望地域</h5></td>
+        <td><h5 class="td_user_text"><%= @user.place_field.place_m %></h5></td>
       </tr>
       <tr>
-        <td class="col-lg-4"><h4>従業員数</h4></td>
-        <td><h4 class="td_user_text"><%= @user.employment %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">決算内容</h5></td>
+        <td><h5 class="td_user_text"><%= @user.settlement.settlement_account %></h5></td>
       </tr>
       <tr>
-        <td class="col-lg-4"><h4>決算内容</h4></td>
-        <td><h4 class="td_user_text"><%= @user.settlement.settlement_account %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">年商</h5></td>
+        <td><h5 class="td_user_text"><%= @user.anuual %></h5></td>
       </tr>
       <tr>
-        <td class="col-lg-4"><h4>主要エリア</h4></td>
-        <td><h4 class="td_user_text"><%= @user.place_field.place %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">従業員数</h5></td>
+        <td><h5 class="td_user_text"><%= @user.employment %></h5></td>
       </tr>
       <tr>
-        <td class="col-lg-4"><h4>会社説明</h4></td>
-        <td><h4 class="td_user_text"><%= @user.pr %></h4></td>
+        <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">会社説明</h5></td>
+        <td><h5 class="td_user_text"><%= @user.pr %></h5></td>
       </tr>
     </table>
-    <div>
-      <% if @user.delete_flag == false && @user.id == current_user.id%>
-      <%= link_to "登録情報を変更する",edit_user_path ,class:'btn btn-info' %>
-      <br>
-      <%= link_to "退会希望の方はこちら",unsubscribe_comments_new_path  %>
+    <div style="text-align: right;margin-top: 10px;"><%= link_to "会社情報を全て表示",company_path %></div>
 
+      <% if @user.delete_flag == false %>
+      <div style="display: inline-block; margin: 20px 25px 80px 0"><%= link_to "登録情報を変更する",edit_user_path ,class:'btn btn-info',style:'padding:5px 3px;' %></div>
+      <div style="display: inline-block;"><%= link_to "退会希望の方はこちら",unsubscribe_comments_new_path,class:'btn btn-danger',style:'padding:5px 3px;' %></div>
+
+      <% else %>
+      <div style="color: red">退会済みのユーザーです（管理者用の表示）</div>
       <% end %>
-    </div>
-    <div><%= link_to "会社情報を全て表示",company_path %></div>
+
   </div>
 
-  <div class="col-md-offset-1 col-lg-5">
-    <div style="margin-top: 50px;">
-      <h4>受信通知一覧</h4>
-      <div><%=render @notifications %></div>
+  <div class="col-lg-6" style="margin-left: 30px;">
+    <div style="margin-top: 30px;background-color: #efffb173;border: solid #a6b108c4 1px;padding: 10px 20px;border-radius: 10px;">
+      <h4 style="font-weight: bold;">受信通知一覧</h4>
+        <% if @notifications.present? %>
+          <div><%=render @notifications.order("created_at DESC") %></div>
+        <% else %>
+          <div style="margin-left: -10px;">現在通知はありません</div>
+        <% end %>
     </div>
-    <div>
-      <h2 class="user-box-headline">登録したニーズ</h2>
-          <% @needs.each do |need| %>
-            <div>
-              <h4>掲載日:<%= need.created_at.strftime('%Y/%m/%d') %></h4>
-            </div>
-            <div>
-                <h4>タイトル:<%= need.need_title %></h4>
-            </div>
-            <div>
-              <h4>マッチング状況:</h4>
-            </div>
 
-              <% if need.delete_flag == true %>
-                <div style="color: red">削除済みのニーズです</div>
-              <% else %>
-                <%= link_to "詳細", need_path(need) %>
-              <div style="border-bottom: solid 1px;"></div>
-            <% end %>
-          <% end %>
-      <br><br>
-    </div>
-  <!-- すべてのユーザーに表示されているので@matchings0の値を変えなきゃいけない　@matchings0 = @matchings0.where(need.user_id: current_user.id)にできれば良い -->
-    <div>
-        <h2>未返答のマッチング申請</h2>
-        <% if @matchings0 %>
+
+    <div style="padding: 20px 0;margin:10px 0;">
+      <div style="margin-left: 12px;">
+        <h4 style="font-weight: bold;position: relative;right: 15px;border-bottom: dotted #1d5c8c 2px;width: 100px;color: #1c4984;padding-bottom: 2px;">申請状況</h4>
+        <h5 style="font-weight: bold; color: #a0460d;">◇返答待ちのマッチング申請</h5>
+        <% if @matchings0.present? %>
           <% @matchings0.each do |m| %>
-          	<div>申請されたニーズ:<%= m.need.need_title %></div>
-          	<div>申請日:<%= m.created_at.strftime('%Y/%m/%d') %></div>
-              <div>申請者:<%= m.user.user_name %></div>
-              <div>コメント:<%= m.matching_message %></div>
-          	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
-              <div style="border-bottom: solid gray 1px;"><%= link_to "申請者情報", company_path(m.user_id) %></div>
-        	<% end %>
+            <div class="need_box col-lg-12">
+              <div class="col-lg-3" style="margin: 10px 0 20px 0">
+                <%= link_to need_path(m.need), :style=>"text-decoration:none; color:black;" do %>
+                  <%= attachment_image_tag m.need, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+              </div>
+              <div class="col-lg-9" style="overflow: hidden;">
+                <h4 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= m.need.need_title.truncate(26) %></h4>
+
+                <h6 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
+                  <%= m.need.purpose.purpose_date %>
+                </h6>
+                <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= m.need.need_number %></div>
+                <div>申請日　:<%= m.created_at.strftime('%Y年%m月%d日') %></div>
+                <div>コメント:<%= m.matching_message %></div>
+                <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
+                <%end%>
+              </div>
+            </div>
+                <% if m.need.delete_flag == true %>
+                  <div style="color: red">削除済みのニーズです</div>
+                <% end %>
+          <% end %>
+
+        <% else %>
+          <div>返答待ちの申請はありません、今すぐニーズを <%=link_to "探しにいく",root_path %></div>
         <% end %>
+      </div>
+
+      <div style="margin-left: 12px;">
+          <h5 style="font-weight: bold; color: #a0460d;">◇許可されたマッチング申請</h5>
+          <% if @matchings1.present? %>
+            <% @matchings1.each do |m| %>
+              <div class="need_box col-lg-12">
+              <div class="col-lg-3" style="margin: 10px 0 20px 0">
+                <%= link_to need_path(m.need), :style=>"text-decoration:none; color:black;" do %>
+                  <%= attachment_image_tag m.need, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+              </div>
+              <div class="col-lg-9" style="overflow: hidden;">
+                <h4 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= m.need.need_title.truncate(26) %></h4>
+
+                <h6 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
+                  <%= m.need.purpose.purpose_date %>
+                </h6>
+                <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= m.need.need_number %></div>
+                <div>申請日　:<%= m.created_at.strftime('%Y年%m月%d日') %></div>
+                <div>コメント:<%= m.matching_message %></div>
+                <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
+                <%end%>
+              </div>
+            </div>
+                <% if m.need.delete_flag == true %>
+                  <div style="color: red">削除済みのニーズです</div>
+                <% end %>
+          <% end %>
+          <% else %>
+            <div>許可された申請はありません</div>
+          <% end %>
+      </div>
+      <div style="margin-left: 12px; ">
+          <h5 style="font-weight: bold; color: #a0460d;">◇拒否されたマッチング申請</h5>
+          <% if @matchings2.present? %>
+            <% @matchings2.each do |m| %>
+              <div class="need_box col-lg-12">
+              <div class="col-lg-3" style="margin: 10px 0 20px 0">
+                <%= link_to need_path(m.need), :style=>"text-decoration:none; color:black;" do %>
+                  <%= attachment_image_tag m.need, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+              </div>
+              <div class="col-lg-9" style="overflow: hidden;">
+                <h4 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= m.need.need_title.truncate(26) %></h4>
+
+                <h6 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
+                  <%= m.need.purpose.purpose_date %>
+                </h6>
+                <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= m.need.need_number %></div>
+                <div>申請日　:<%= m.created_at.strftime('%Y年%m月%d日') %></div>
+                <div>コメント:<%= m.matching_message %></div>
+                <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
+                <%end%>
+              </div>
+            </div>
+                <% if m.need.delete_flag == true %>
+                  <div style="color: red">削除済みのニーズです</div>
+                <% end %>
+          <% end %>
+          <% else %>
+            <div>拒否された申請はありません</div>
+          <% end %>
+      </div>
     </div>
 
-    <div>
-        <h2>許可したマッチング申請</h2>
-        <% if @matchings1 %>
-          <% @matchings1.each do |m| %>
-          	<div>申請されたニーズ:<%= m.need.need_title %></div>
-          	<div>許可した日:<%= m.updated_at.strftime('%Y/%m/%d') %></div>
-              <div>申請者:<%= m.user.user_name %></div>
-              <div>連絡先<%=m.user.email%></div>
-              <div>コメント:<%= m.matching_message %></div>
-          	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
-              <div style="border-bottom: solid gray 1px;"><%= link_to "申請者情報", company_path(m.user_id) %></div>
-        	<% end %>
+
+    <div class="col-lg-12" style="margin-top: 30px">
+      <h4 class="user-box-headline" style="font-weight: bold;border-bottom: dotted #1d5c8c 2px;width: 150px;color: #1c4984;padding-bottom: 2px;">登録したニーズ</h4>
+      <% if @needs.present? %>
+        <% @needs.order("created_at DESC").each do |f| %>
+          <div class="need_box col-lg-12" style="margin-bottom: 20px;">
+            <div class="col-lg-3" style="margin: 10px 0 30px 0">
+            <%= link_to need_path(f), :style=>"text-decoration:none; color:black;" do %>
+              <%= attachment_image_tag f, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+            </div>
+            <div class="col-lg-9" style="overflow: hidden;">
+              <h4 style="margin: 0 0 0 0;color: #0000c5; font-weight: bold;"><%= f.need_title.truncate(26) %></h4>
+
+              <h6 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
+                <%= f.purpose.purpose_date %>
+              </h6>
+              <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= f.need_number %></div>
+              <div style="margin-top: 5px;">登録日　：<%= f.created_at.strftime('%Y年%m月%d日')%>(更新日：<%= f.updated_at.strftime('%Y年%m月%d日')%>)</div>
+              <div>募集地域：<p style="color: orange; display: inline-block;"><%= f.place_field.place_m %></p></div>
+              <div style="margin: 5px 0"><span class="glyphicon glyphicon-envelope"></span> 受信したマッチング申請：<%= f.matchings.count %>件（未回答の申請：<%= f.matchings.where(matching_s: 0).count %>件）</div>
+            <%end%>
+            </div>
+          </div>
+              <% if f.delete_flag == true %>
+                <div style="color: red">削除済みのニーズです</div>
+              <% end %>
         <% end %>
-    </div>
-    <div>
-        <h2>拒否したマッチング申請</h2>
-        <% if @matchings2 %>
-          <% @matchings2.each do |m| %>
-          	<div>申請されたニーズ:<%= m.need.need_title %></div>
-          	<div>拒否した日:<%= m.updated_at.strftime('%Y/%m/%d') %></div>
-              <div>申請者:<%= m.user.user_name %></div>
-              <div>コメント:<%= m.matching_message %></div>
-          	<div><%= link_to "ニーズの詳細", need_path(m.need_id) %></div>
-              <div style="border-bottom: solid gray 1px;"><%= link_to "申請者情報", company_path(m.user_id) %></div>
-        	<% end %>
-        <% end %>
+        <div class="pagenate-space" style="text-align: center;">
+          <%= paginate @needs, class: "pagenate" %>
+        </div>
+      <% else %>
+        <div style="padding-bottom: 100px; margin-bottom: 30px;">あなたが登録したニーズはありません、今すぐ<%=link_to "登録",new_need_path %>する</div>
+      <% end %>
     </div>
   </div>
 </div>
-<div></div>

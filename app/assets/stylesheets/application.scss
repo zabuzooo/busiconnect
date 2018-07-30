@@ -175,7 +175,7 @@ content: '';
   padding: 0.5em 0.5em 0.5em 1.7em;
   list-style-type: none!important;
   background: -webkit-linear-gradient(top, #whitesmoke 0%, whitesmoke 100%);/*グラデーション*/
-  background: linear-gradient(to bottom, whitesmoke 0%, #CCCCCC 100%);/*グラデーション*/
+  background: linear-gradient(to bottom, whitesmoke 0%, #b4e1ef 100%);/*グラデーション*/
   color: black;
   font-weight: bold;
 }
@@ -188,10 +188,22 @@ content: '';
   color: #FF6600;
 }
 .genre-list .genre-list-item:active {/*ボタンを押したとき*/
-    -ms-transform: translateY(4px);
-    -webkit-transform: translateY(4px);
-    transform: translateY(2px);/*下に動く*/
-    border-bottom: none;/*線を消す*/
+  -ms-transform: translateY(4px);
+  -webkit-transform: translateY(4px);
+  transform: translateY(2px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+.current{
+  background-color: #3250a2;
+  height: 34px;
+  width: 34px;
+  position: relative;
+  top: 1px;
+  padding: 8px 14px;
+  color: white;
+}
+.pagination > li{
+  display: inline-flex;
 }
 /*footer用のCSS*/
 footer{

@@ -11,7 +11,7 @@
 				<div>
 					<h3 class="sarch-word">検索ワード"<%= params[:q][:need_title_or_need_text_cont] %>"</h3>
 					<%if params[:q][:need_title_or_need_text_cont] == "" %>
-						<div style="margin-left: 10px; color: red;">※ 検索ワードの指定が無いため、全てのニーズを表示しています</div>
+						<div style="margin: 0 0 30px 30px; color: red;">※ 検索ワードの指定が無いため、全てのニーズを表示しています</div>
 					<% end %>
 				</div>
 			<% if @needs.present? %>
@@ -22,7 +22,7 @@
 						<%= attachment_image_tag f, :image, :fill, 150, 150, format: 'jpg', fallback: 'no_image.jpg', :size => '150x150' %>
 					</div>
 					<div class="col-lg-9" style="overflow: hidden;">
-						<h3 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= f.need_title.truncate(17) %></h3>
+						<h3 style="margin: 10px 0 0 0;color: #0000c5; font-weight: bold;"><%= f.need_title.truncate(26) %></h3>
 
 						<h5 style="display: inline-block; padding: 0 20px; border: solid 1px; color: #808080db; border-radius: 3px;">
 							<%= f.purpose.purpose_date %>
@@ -35,8 +35,11 @@
 					</div>
 				</div>
 				<% end %>
+				<div class="pagenate-space" style="text-align: center;">
+          			<%= paginate @needs, class: "pagenate" %>
+        		</div>
 			<% else %>
-				<div style="margin-left: 10px;color: red;">※検索されたキーワードを含むニーズは存在しませんでした。</div>
+				<div style="margin-left: 10px">検索されたキーワードを含むニーズは存在しませんでした。</div>
 			<% end %>
 			</div>
 		</div>
@@ -44,31 +47,19 @@
 				<div class="col-md-12" style="margin-top: 50px;">
 
 			<div class="col-md-7">
-				<h3>地域ごとに探す</h3>
+				<h3>募集地域ごとに探す</h3>
 					<ul id="imagemap">
-						<li id="hokkaido"><a href="hokkaido/hokkaido.html"><span>北海道</span></a></li>
-						<li id="touhoku"><a href="tohoku/miyagi</l"><span>東北</span></a></li>
-						<li id="hokuriku"><a href="hokuriku/nagano.html"><span>北陸</span></a></li>
-						<li id="kanto"><a href="kanto/tokyo.html"><span>関東</span></a></li>
-						<li id="tokai"><a href="toukai/shizuoka.html"><span>東海</span></a></li>
-						<li id="kansai"><a href="kansai/osaka.html"><span>関西</span></a></li>
-						<li id="chugoku"><a href="chugoku/hiroshima.html"><span>中国</span></a></li>
-						<li id="shikoku"><a href="shikoku/kochi.html"><span>四国</span></a></li>
-						<li id="kyushu"><a href="kyushu/fukuoka.html"><span>九州</span></a></li>
-						<li id="okinawa"><a href="okinawa/okinawa.html"><span>沖縄</span></a></li>
-					</ul>
-		<!-- ●日本地図下の地域リスト -->
-					<ul id="area">
-						<li><a href="hokkaido/hokkaido.html">北海道</a></li>
-						<li><a href="tohoku/miyagi.html">東北</a></li>
-						<li><a href="hokuriku/nagano.html">北陸・甲信越</a></li>
-						<li><a href="kanto/tokyo.html">関東</a></li>
-						<li><a href="toukai/shizuoka.html">東海</a></li>
-						<li><a href="kansai/osaka.html">関西</a></li>
-						<li><a href="chugoku/hiroshima.html">中国</a></li>
-						<li><a href="shikoku/kochi.html">四国</a></li>
-						<li><a href="kyushu/fukuoka.html">九州</a></li>
-						<li><a href="okinawa/okinawa.html">沖縄</a></li>
+						<li id="hokkaido"><a href="/place_fields/2"><span>北海道</span></a></li>
+						<li id="touhoku"><a href="/place_fields/3"><span>東北</span></a></li>
+						<li id="hokuriku"><a href="/place_fields/4"><span>北陸</span></a></li>
+						<li id="kanto"><a href="/place_fields/5"><span>関東</span></a></li>
+						<li id="tokai"><a href="/place_fields/6"><span>東海</span></a></li>
+						<li id="kansai"><a href="/place_fields/7"><span>関西</span></a></li>
+						<li id="chugoku"><a href="/place_fields/8"><span>中国</span></a></li>
+						<li id="shikoku"><a href="/place_fields/9"><span>四国</span></a></li>
+						<li id="kyushu"><a href="/place_fields/10"><span>九州</span></a></li>
+						<li id="okinawa"><a href="/place_fields/11"><span>沖縄</span></a></li>
+						<li style="position: relative; top: 380px; left: 450px; font-size: 17px"><a href="/place_fields/1">指定無し(全国)</a></li>
 					</ul>
 			</div>
 

@@ -1,3 +1,4 @@
 <li>
- <%= link_to "#{notification.notified_by.user_name}さんがあなたに#{notification.notified_type}をしました", link_through_path(notification) %>
+ <%= link_to "#{notification.notified_by.user_name}さんがあなたに#{notification.notified_type}をしました 　#{notification.created_at
+ .strftime('%Y年%m月%d日 %H時%M分')}", link_through_path(notification) %>
 </li>

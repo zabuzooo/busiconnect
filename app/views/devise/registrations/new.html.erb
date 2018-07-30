@@ -58,8 +58,8 @@
         </tr>
         <tr>
           <div class="field">
-            <td class="td_color"><%= f.label :主要活動地域,class: "label_name" %><br /></td>
-            <td><%= f.collection_select(:place_field_id, PlaceField.all, :id, :place, prompt: "選択する") %></td>
+            <td class="td_color"><%= f.label :マッチング募集地域,class: "label_name" %><br /></td>
+            <td><%= f.collection_select(:place_field_id, PlaceField.all, :id, :place_m, prompt: "選択する") %></td>
           </div>
         </tr>
         <tr>
