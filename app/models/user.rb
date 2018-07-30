@@ -4,6 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :email, {presence:true}
+  validates :user_name, {presence:true}
+  validates :user_phonetic, {presence:true}
+  validates :postal, {presence:true,numericality: { only_integer: true }}
+  validates :address, {presence:true}
+  validates :tell, {presence:true, numericality: { only_integer: true }}
+
   has_one :unsubscribe_comment
   has_many :needs
   has_many :matchings

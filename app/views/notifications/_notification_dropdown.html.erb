@@ -1,7 +1,7 @@
 <div class="dropdown notification-dropdown">
 	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id='dropdownMenu1' aria-haspopup="true"
  	aria-expanded="true">
-		<span class="glyphicon glyphicon-bell"><i class="fa fa-bell" aria-hidden="true"></i> <%= current_user.notifications.where(read: false).count %>件の通知</span>
+		<span><i class="fa fa-bell" aria-hidden="true"></i>　<%= current_user.notifications.where(read: false).count %>件の通知</span>
 	</button>
 	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -120px;">
 		<li class="dropdown-header text-center">未読通知を最大5件まで表示します</li>
