@@ -1,5 +1,5 @@
-<div class="search-space" style="background-color: #1bde9678; margin-top: 30px; height: 100px;">
-	<div>ワードで検索する</div>
+<div style="background-color: #1e75b3; margin-top: 30px; height: 110px; border-radius: 5px; border: solid #3f16e46e 2px;">
+	<div style="color: white; padding: 5px 8px; font-weight: bold;">ワードで検索する</div>
 	<%= search_form_for @search, url: needs_search_path, html: {class: 'form-inline'}  do |f| %>
 		<div style="margin-left: 5px;">
 			<%= f.text_field :need_title_or_need_text_cont, class: "search-form form-control",:size => '30', placeholder: '商品名検索' %>
@@ -11,11 +11,11 @@
 </div>
 
 
-<div style="margin-top:20px; height: auto; border:solid #4cafa1 2px;">
+<div style="margin-top:20px; height: auto; border:solid #4cafa1 2px; border-radius: 5px;">
 	<div style="color: white;font-weight: bold;font-size: 20px;height: 32px;background-color: #14755a;padding-left: 5px;">業種で探す</div>
 	<ul class="genre-list">
 		<% @types.each do |t| %>
-			<%=link_to type_path(t.id), :style=>"text-decoration: none;" do %>
+			<%=link_to type_path(t), :style=>"text-decoration: none;" do %>
 				<li class="genre-list-item">
 					<%= t.type_industry %>
 				</li>
@@ -24,13 +24,13 @@
 	</ul>
 </div>
 
-<div style="height: auto; border-left:solid #4cafa1 2px; border-bottom:solid #4cafa1 2px; border-right: solid #4cafa1 2px;">
-	<div style="color: white;font-weight: bold;font-size: 20px;height: 32px;background-color: #18377d;padding-left: 5px;">募集地域で探す</div>
+<div style="margin-top:20px; height: auto; border:solid #6a83dc 2px; border-radius: 5px;">
+	<div style="color: white;font-weight: bold;font-size: 20px;height: 32px;background-color: #18377d;padding-left: 5px;">目的で探す</div>
 	<ul class="genre-list">
-		<% @place_fields.each do |f| %>
-			<%=link_to place_field_path(f.id), :style=>"text-decoration: none;" do %>
+		<% @purposes.each do |s| %>
+			<%=link_to purpose_path(s), :style=>"text-decoration: none;" do %>
 				<li class="genre-list-item">
-					<%= f.place_m %>
+					<%= s.purpose_date %>
 				</li>
 			<% end %>
 		<% end %>

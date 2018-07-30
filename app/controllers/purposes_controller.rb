@@ -1,11 +1,11 @@
-class PlaceFieldsController < ApplicationController
+class PurposesController < ApplicationController
   def show
   	@search = Need.ransack(params[:q])
   	@types = Type.all
   	@place_fields = PlaceField.all
   	@purposes = Purpose.all
-  	@place_field = PlaceField.find(params[:id])
-  	@need = Need.where(place_field_id: @place_field, delete_flag: false)
+  	@purpose = Purpose.find(params[:id])
+  	@need = Need.where(purpose_id: @purpose, delete_flag: false)
   	@needs = @need.page(params[:page]).per(8)
   end
 end

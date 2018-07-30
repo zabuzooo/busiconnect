@@ -23,16 +23,19 @@ class NeedsController < ApplicationController
   end
 
   def index
-    @delete_flag_needs = Need.all
-    @needs = @delete_flag_needs.where(delete_flag: false)
+    @delete_flag_needs = Need.where(delete_flag: false)
+    @needs = @delete_flag_needs.page(params[:page]).per(8)
     @types = Type.all
     @place_fields = PlaceField.all
+    @purposes = Purpose.all
     @search = Need.ransack(params[:q])
   end
 
   def show
     @need = Need.find(params[:id])
     @mt = @need.matchings
+    # ↓はマッチング申請を同ユーザーが複数できなくするもの、実装するべきか悩む。一度しか登録できないのはどうなんだろう
+    # @search_current_user_mt = @mt.where(user_id: current_user.id)
   end
 
   def edit
@@ -55,9 +58,10 @@ class NeedsController < ApplicationController
     @search = Need.ransack(params[:q])
     @search_needs = @search.result
     @delete_flag_search = @search_needs.where(delete_flag: false)
-    @needs = @delete_flag_search.page(params[:page]).reverse_order
+    @needs = @delete_flag_search.page(params[:page]).per(8)
     @types = Type.all
-    @place_fields = Place_field.all
+    @place_fields = PlaceField.all
+    @purposes = Purpose.all
   end
 
   def introduction

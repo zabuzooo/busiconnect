@@ -1,3 +1,14 @@
 // Place all the styles related to the unsubscribe_comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user_new_back{
+	background-image: url(portfolio-4.jpg);
+    width: 100%;
+    height: 800px;
+    background-size: cover;
+}
+.user_new_back_mask{
+	height: 100%;
+	background: rgba(251, 255, 184, 0.85);
+}

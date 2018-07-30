@@ -9,7 +9,7 @@
 			<div style="margin-top:30px; border-top: solid gray 2px; ">
 				<div style="width: 100%;height: 170px;border-bottom: solid gray 2px;">ここに絞り込み検索機能とか入れたい</div>
 				<div>
-					<h3 class="sarch-word">業種：<%= @type.type_industry %></h3>
+					<h3 class="sarch-word">目的："<%= @purpose.purpose_date %>"</h3>
 				</div>
 			<% if @needs.present? %>
 				<% @needs.order("created_at DESC").each do |f| %>
@@ -36,7 +36,7 @@
           			<%= paginate @needs, class: "pagenate" %>
         		</div>
 			<% else %>
-				<div style="margin-left: 10px;">選択した業種のニーズは存在しませんでした。</div>
+				<div style="margin-left: 10px">選択した目的のニーズは存在しませんでした。</div>
 			<% end %>
 			</div>
 		</div>

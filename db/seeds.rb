@@ -6,17 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-PlaceField.create(place: "北海道")
-PlaceField.create(place: "東北")
-PlaceField.create(place: "北陸・甲信越")
-PlaceField.create(place: "関東")
-PlaceField.create(place: "東海")
-PlaceField.create(place: "関西")
-PlaceField.create(place: "中国")
-PlaceField.create(place: "四国")
-PlaceField.create(place: "九州")
-PlaceField.create(place: "沖縄")
-
 PlaceField.create(place_m: "指定無し(全国)")
 PlaceField.create(place_m: "北海道")
 PlaceField.create(place_m: "東北")

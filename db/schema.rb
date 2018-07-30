@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180726114533) do
+ActiveRecord::Schema.define(version: 20180728073036) do
 
   create_table "matchings", force: :cascade do |t|
     t.string "matching_message"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20180726114533) do
   end
 
   create_table "place_fields", force: :cascade do |t|
-    t.string "place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "place_m"
