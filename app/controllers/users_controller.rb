@@ -1,8 +1,20 @@
 class UsersController < ApplicationController
-	before_action :signed_check
+	before_action :signed_check, only: [:completion, :edit, :update, :index, :show, :company]
 	before_action :access_check, only: [:edit, :update, :show]
 
 	def completion
+	end
+
+	def use
+	end
+
+	def law
+	end
+
+	def forces
+	end
+
+	def agreement
 	end
 
 	def edit
@@ -33,11 +45,9 @@ class UsersController < ApplicationController
 		@matchings2 = current_user.matchings.where(matching_s:2)
 	end
 
-
 	def company
 		@user = User.find(params[:id])
 	end
-
 
 	private
 		def user_params

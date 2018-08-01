@@ -29,6 +29,11 @@ Rails.application.routes.draw do
   resources :place_fields, only: [:show]
   resources :purposes, only: [:show]
 
+  get '/use' => 'users#use'
+  get '/law' => 'users#law'
+  get '/forces' => 'users#forces'
+  get '/agreement' => 'users#agreement'
+
   get 'user_company/:id' => 'users#company', as: 'company'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
