@@ -1,4 +1,5 @@
 class TypesController < ApplicationController
+  before_action :authenticate_user!
   def show
   	@type = Type.find(params[:id])
   	@users = User.where(type_id: @type, delete_flag: false)

@@ -1,4 +1,5 @@
 class PurposesController < ApplicationController
+	before_action :authenticate_user!
   def show
   	@search = Need.ransack(params[:q])
   	@types = Type.all

@@ -112,11 +112,13 @@
 
 	<p>受信しているマッチング申請</p>
 	<% @mt.order("created_at DESC").each do |m| %>
-
 		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
 		<div>名前:<%= m.user.user_name %></div>
 		<div>メッセージ:<%= m.matching_message %></div>
 		<%= link_to "企業詳細",company_path(m.user_id) %>
+		<%if m.user.delete_flag==true%>
+			<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>
+		<% end %>
 
 		<% if m.matching_s ==0 && m.need.user_id == current_user.id %>
 			<div><%= link_to '許可', matching_path(m), method: :patch, class: 'btn btn-sm btn-info', data: {confirm: "本当に許可しますか？"} %>
