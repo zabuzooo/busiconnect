@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/sign_up/confirm' => 'users/registrations#confirm'
     post 'users/sign_up/complete' => 'users/registrations#complete'
+    get 'users/sign_up/back' => 'users/registrations#back'
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
   end
   # needsのルート
   get 'needs/search' => 'needs#search'
@@ -13,8 +15,9 @@ Rails.application.routes.draw do
   resources :needs, :except => :index
 
   # unsubscribe_commentsのルート
-  get 'unsubscribe_comments/new' => 'unsubscribe_comments#new'
-  get 'unsubscribe_comments/complete' => 'unsubscribe_comments#complete'
+  get '/unsubscribe_comments/new' => 'unsubscribe_comments#new'
+  get '/unsubscribe_comments/complete' => 'unsubscribe_comments#complete'
+  post '/unsubscribe_comments' => 'unsubscribe_comments#create'
 
   # usersのルート
   get 'users/completion' => 'users#completion'

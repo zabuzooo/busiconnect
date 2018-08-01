@@ -11,6 +11,10 @@ class User < ApplicationRecord
   validates :address, {presence:true}
   validates :tell, {presence:true, numericality: { only_integer: true }}
 
+  def active_for_authentication?
+    super && !delete_flag?
+  end
+
   has_one :unsubscribe_comment
   has_many :needs
   has_many :matchings

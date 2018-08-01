@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :signed_check, only: [:completion, :edit, :update, :index, :show, :company]
+	before_action :authenticate_user!, only: [:completion, :edit, :update, :index, :show, :company]
 	before_action :access_check, only: [:edit, :update, :show]
 
 	def completion
@@ -53,12 +53,6 @@ class UsersController < ApplicationController
 		def user_params
 			params.require(:user).permit(:user_name, :user_phonetic, :postal, :address, :place_field_id, :tell, :email, :pr, :anuual, :employment, :settlement_id, :type_id, :image)
 		end
-
-		def signed_check
-	      unless user_signed_in?
-	        redirect_to introduction_path
-	      end
-	    end
 
 		def access_check
 	      unless current_user.id == params[:id].to_i
