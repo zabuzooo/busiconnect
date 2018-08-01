@@ -4,16 +4,14 @@
 
 /*新規登録*/
 .sign_up_box {
-  padding: 60px 0;
+  padding: 10px 0;
 }
 .signup_container {
-  height: 745px;
+  height: 512px;
 }
-
 .signup_headline {
-  margin: 20px 0 ;
+  margin: 20px 0 10px 21%;
 }
-
 .em_text {
   padding-left: 5px;
 }
@@ -27,7 +25,6 @@
   width: 628px;
   margin: 0 auto;
   text-align: center;
-
 }
 .kigou {
   float: left;
@@ -43,8 +40,6 @@
   margin: 20px auto;
   width: 1000px;
 }
-
-
 .text_1 {
   width: 800px;
   margin: 0 auto;
@@ -76,7 +71,6 @@
   width: 200px;
   margin: 0 auto;
   font-size: 20px;
-  text-align: center;
   height: 50px;
   padding: 10px 20px;
 }
@@ -113,7 +107,7 @@
 
  /*確認画面*/
  .user_completion {
-   height: 745px;
+   height: 512px;
    padding-top: 50px;
  }
  .user_confirm_container {
@@ -125,9 +119,7 @@
 .td_text {
   padding-left: 5px;
 }
-.Agreement_headline {
-  margin: 10px 0;
-}
+
 .user_confirm_table_box {
   margin-top: 20px;
 }
@@ -158,11 +150,12 @@
   height: 300px;
 }
 /*user_confirm*/
-
+.Agreement_headline {
+  margin: 20px 0 10px 21%;
+}
 .user_confirm_table {
   width: 700px;
   margin: 0 auto;
-
 }
 .back_actions {
   text-align: center;
@@ -171,5 +164,9 @@
   padding-top: 20px;
 }
 .user_confirm_headline {
-  margin: 20px 0;
+  margin: 20px 0 10px 21%;
+}
+/*ログイン*/
+.login_container{
+  height: 492px
 }
