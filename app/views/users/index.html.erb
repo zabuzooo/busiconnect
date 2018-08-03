@@ -1,2 +1,10 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div>利用者一覧</div>
+	<% @users.each do |u| %>
+		<%= link_to user_path(u),:style=>"text-decoration:none; color:black;" do %>
+			<div><%=u.user_name%></div>
+			<div><%=u.created_at.strftime('%Y年%m月%d日')%></div>
+			<% if u.delete_flag == true %>
+				<div style="color: red;">退会済みのユーザー</div>
+			<% end %>
+		<% end %>
+	<% end %>

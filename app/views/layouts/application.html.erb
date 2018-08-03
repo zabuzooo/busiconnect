@@ -12,21 +12,31 @@
   <body>
       <header>
 <!-- 条件分岐 -->
-        <% if user_signed_in? %>
+
+<!-- 管理者 -->
+        <% if admin_signed_in? %>
+          <div class="header-links">
+            <div class="link3"><%= link_to "利用者一覧",users_path ,class:'btn10' %></div>
+            <div class="link2"><%= link_to "問い合わせ一覧", root_path, class:'btn10' %></div>
+            <div class="link3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'btn10' %></div>
+          </div>
+          <a href="/"><div class="header-logo"></div></a>
+          <div class="header-text2">
+            <p class="header-text3">管理者としてログイン中</p>
+          </div>
+<!-- ユーザー -->
+        <% elsif user_signed_in? %>
           <div class="header-links">
             <div style="display: inline-block;margin: 0 30px;position:relative;bottom: 11px;"><%= render 'notifications/notification_dropdown' %></div>
             <div class="link3"><%= link_to "ニーズ登録",new_need_path ,class:'btn10' %></div>
             <div class="link2"><%= link_to "マイページ", user_path(current_user.id), class:'btn10' %></div>
-          <div class="link3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:'btn10' %></div>
-        </div>
-        <a href="/"><div class="header-logo"></div></a>
+            <div class="link3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class:'btn10' %></div>
+          </div>
+          <a href="/"><div class="header-logo"></div></a>
           <div class="header-text2">
             <p class="header-text3">ようこそ! <%= current_user.user_name %>さん</p>
           </div>
-
-
-
-
+<!-- ゲスト -->
       <% else %>
       <div class="header-links">
             <div class="link2"><%= link_to "新規登録", new_user_registration_path, :style=>"color:white;",class:'btn10' %></div>
@@ -37,7 +47,6 @@
             <p class="header-text3">ようこそ! ゲストさん</p>
           </div>
         </div>
-
       <% end %>
 <!-- 条件分岐終わり -->
       </header>

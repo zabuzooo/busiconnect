@@ -1,5 +1,5 @@
 class NeedsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :index, :show, :edit, :update, :search, :destroy]
+  before_action :sing_in_check, only: [:new, :create, :index, :show, :edit, :update, :search, :destroy]
   def new
     @need = Need.new
     @place_field = PlaceField.all
@@ -77,5 +77,11 @@ class NeedsController < ApplicationController
   private
     def need_params
       params.require(:need).permit(:need_title, :need_text, :match_time, :place_field_id, :place, :user_id, :need_number, :purpose_id, :image)
+    end
+
+    def sing_in_check
+      unless user_signed_in? || admin_signed_in?
+        redirect_to introduction_path
+      end
     end
 end
