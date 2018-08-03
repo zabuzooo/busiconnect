@@ -1,10 +1,11 @@
-<div style="background-color: #1e75b3; margin-top: 30px; height: 110px; border-radius: 5px; border: solid #3f16e46e 2px;">
+<div style="background-color: #1e75b3; margin-top: 30px; height: 120px; border-radius: 5px; border: solid #3f16e46e 2px;">
 	<div style="color: white; padding: 5px 8px; font-weight: bold;">ワードで検索する</div>
 	<%= search_form_for @search, url: needs_search_path, html: {class: 'form-inline'}  do |f| %>
 		<div style="margin-left: 5px;">
-			<%= f.text_field :need_title_or_need_text_cont, class: "search-form form-control",:size => '30', placeholder: '商品名検索' %>
+			<%= f.text_field :need_title_or_need_text_cont, class: "search-form form-control",:size => '30', placeholder: 'ニーズを検索' %>
 		</div>
-		<div class="search-form-btn" style="float: right; margin-right: 20px; margin-top: 5px;">
+		<div style="font-size: 10px; color: white;text-align: right; margin: 2px 5px 0 0;">※タイトルや本文・識別番号の一部で検索できます</div>
+		<div class="search-form-btn" style="float: right; margin-right: 20px; margin-top: 2px;">
 			<%= f.submit "Search", class: 'btn btn-default btn-sm' %>
 		</div>
 	<% end %>

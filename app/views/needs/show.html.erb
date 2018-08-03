@@ -56,7 +56,11 @@
 </div>
 
 <div class="col-lg-12">
-	<% if @need.delete_flag == false && @need.user_id == current_user.id %>
+
+	<% if admin_signed_in? %>
+		<a><%= link_to 'ニーズを編集', edit_need_path(@need), class: 'btn btn-sm btn-info' %></a>
+		<a><%= link_to 'ニーズを削除', need_path(@need), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "このニーズを削除しますか？"} %></a>
+	<% elsif @need.delete_flag == false && @need.user_id == current_user.id %>
 		<a><%= link_to 'ニーズを編集', edit_need_path(@need), class: 'btn btn-sm btn-info' %></a>
 		<a><%= link_to 'ニーズを削除', need_path(@need), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "このニーズを削除しますか？"} %></a>
 	<% end %>
@@ -97,7 +101,9 @@
 <!-- tuika -->
 
 <div class="col-lg-12" style="margin-top: 30px; border-top:solid gray 2px;">
- <% if @need.user_id != current_user.id %>
+<% if admin_signed_in? %>
+	<div style="color: red;">管理者はマッチング申請送信できません</div>
+ <% elsif @need.user_id != current_user.id %>
 <br>
   <div id="follow_form">
      	<%= form_for(current_user.matchings.build(id: @need.id), url: test_path) do |f| %>
@@ -109,7 +115,19 @@
   </div>
 <% end %>
 <br><br>
+<% if admin_signed_in? %>
+	<p>受信しているマッチング申請</p>
+	<% @mt.order("created_at DESC").each do |m| %>
+		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
+		<div>名前:<%= m.user.user_name %></div>
+		<div>メッセージ:<%= br(m.matching_message) %></div>
+		<%= link_to "企業詳細",company_path(m.user_id) %>
+		<%if m.user.delete_flag==true%>
+			<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>
+	<% end %>
+<% end %>
 
+<% else %>
 	<p>受信しているマッチング申請</p>
 	<% @mt.order("created_at DESC").each do |m| %>
 		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
@@ -137,9 +155,9 @@
 			<p>マッチングが拒否されました...</p>
 		<% end %>
 		<div>___________________________________________</div>
-
-
 	<% end %>
+<%end%>
+
   </div>
 </div>
 </div>

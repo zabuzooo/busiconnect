@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!, only: [:completion, :edit, :update, :index, :show, :company]
+	before_action :sing_in_check, only: [:completion, :edit, :update, :index, :show, :company]
 	before_action :access_check, only: [:edit, :update, :show]
+	before_action :admin_check, only: [:index]
 
 	def completion
 	end
@@ -32,17 +33,18 @@ class UsersController < ApplicationController
 	end
 
 	def index
+		@users = User.all
 	end
 
 	def show
 		@user = User.find(params[:id])
-		@notifications = current_user.notifications
+		@notifications = @user.notifications
 		@unsubscribe_comment = UnsubscribeComment.find_by(user_id: params[:id])
 		@need = Need.where(user_id: params[:id])
 		@needs = @need.page(params[:page]).per(3)
-		@matchings0 = current_user.matchings.where(matching_s:0)
-		@matchings1 = current_user.matchings.where(matching_s:1)
-		@matchings2 = current_user.matchings.where(matching_s:2)
+		@matchings0 = @user.matchings.where(matching_s:0)
+		@matchings1 = @user.matchings.where(matching_s:1)
+		@matchings2 = @user.matchings.where(matching_s:2)
 	end
 
 	def company
@@ -54,9 +56,21 @@ class UsersController < ApplicationController
 			params.require(:user).permit(:user_name, :user_phonetic, :postal, :address, :place_field_id, :tell, :email, :pr, :anuual, :employment, :settlement_id, :type_id, :image)
 		end
 
+		def sing_in_check
+			unless user_signed_in? || admin_signed_in?
+				redirect_to introduction_path
+			end
+		end
+
 		def access_check
-	      unless current_user.id == params[:id].to_i
+	      unless admin_signed_in? || current_user.id == params[:id].to_i
 	        redirect_to root_path
 	      end
 	    end
+
+	    def admin_check
+	    	unless admin_signed_in?
+			redirect_to root_path
+			end
+		end
 end

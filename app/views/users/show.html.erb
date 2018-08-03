@@ -44,7 +44,11 @@
       </tr>
       <tr>
         <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">会社説明</h5></td>
+        <%if @user.pr.present? %>
         <td><h5 class="td_user_text"><%= @user.pr.truncate(50) %></h5></td>
+        <% else %>
+        <td><h5 class="td_user_text"><%= @user.pr %></h5></td>
+        <% end %>
       </tr>
     </table>
     <div style="text-align: right;margin-top: 10px;"><%= link_to "会社情報を全て表示",company_path %></div>
@@ -89,7 +93,7 @@
                 </h6>
                 <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= m.need.need_number %></div>
                 <div>申請日　:<%= m.created_at.strftime('%Y年%m月%d日') %></div>
-                <div>コメント:<%= m.matching_message %></div>
+                <div>コメント:<%= m.matching_message.truncate(62) %></div>
                 <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
                 <%end%>
               </div>
@@ -121,7 +125,7 @@
                 </h6>
                 <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= m.need.need_number %></div>
                 <div>申請日　:<%= m.created_at.strftime('%Y年%m月%d日') %></div>
-                <div>コメント:<%= m.matching_message %></div>
+                <div>コメント:<%= m.matching_message.truncate(62) %></div>
                 <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
                 <%end%>
               </div>
@@ -151,7 +155,7 @@
                 </h6>
                 <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= m.need.need_number %></div>
                 <div>申請日　:<%= m.created_at.strftime('%Y年%m月%d日') %></div>
-                <div>コメント:<%= m.matching_message %></div>
+                <div>コメント:<%= m.matching_message.truncate(62) %></div>
                 <div style="text-align: right;"><%= link_to "企業情報", company_path(m.need.user_id) %></div>
                 <%end%>
               </div>
@@ -185,7 +189,7 @@
               <div style="display: inline-block; float: right; margin-right: 10%;">識別番号：<%= f.need_number %></div>
               <div style="margin-top: 5px;">登録日　：<%= f.created_at.strftime('%Y年%m月%d日')%>(更新日：<%= f.updated_at.strftime('%Y年%m月%d日')%>)</div>
               <div>募集地域：<p style="color: orange; display: inline-block;"><%= f.place_field.place_m %></p></div>
-              <div style="margin: 5px 0"><i class="fa fa-envelope"></i> 受信したマッチング申請：<%= f.matchings.count %>件（未回答の申請：<%= f.matchings.where(matching_s: 0).count %>件）</div>
+              <div style="margin: 5px 0"><i class="fa fa-envelope"></i> 受信したマッチング申請：<%= f.matchings.count %>件（未回答<%= f.matchings.where(matching_s: 0).count %>件, マッチング<%= f.matchings.where(matching_s: 1).count %>件）</div>
             <%end%>
             </div>
               <% if f.delete_flag == true %>
