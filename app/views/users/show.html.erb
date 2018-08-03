@@ -44,7 +44,7 @@
       </tr>
       <tr>
         <td class="col-lg-5" style="border-right: solid #ddd 1px;"><h5 style="text-align: center;">会社説明</h5></td>
-        <td><h5 class="td_user_text"><%= @user.pr %></h5></td>
+        <td><h5 class="td_user_text"><%= @user.pr.truncate(50) %></h5></td>
       </tr>
     </table>
     <div style="text-align: right;margin-top: 10px;"><%= link_to "会社情報を全て表示",company_path %></div>

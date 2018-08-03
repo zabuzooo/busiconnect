@@ -1,5 +1,5 @@
 class MatchingsController < ApplicationController
-  before_action :authenticate_user!,
+  before_action :authenticate_user!
   after_action :create_notifications, only: [:create]
   after_action :update_notifications, only: [:update]
   after_action :destroy_notifications, only: [:destroy]

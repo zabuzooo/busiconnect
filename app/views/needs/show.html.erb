@@ -102,7 +102,7 @@
   <div id="follow_form">
      	<%= form_for(current_user.matchings.build(id: @need.id), url: test_path) do |f| %>
   			<div><%= f.hidden_field :id %></div>
-  			<div><%= f.text_area :matching_message, rows:'5', class: 'form-control',:size => '50', placeholder: 'マッチング申請するにあたりメッセージを入力してください' %></div>
+  			<div><%= f.text_area :matching_message, rows:'6', class: 'form-control', placeholder: 'マッチング申請するにあたりメッセージを入力してください' %></div>
   			<%= f.submit "マッチング申請する", class: "btn btn-large btn-primary follow-btn" , data: {confirm: "マッチング申請を相手企業に送信します、本当によろしいですか？"}%>
 		<% end %>
 
@@ -114,7 +114,7 @@
 	<% @mt.order("created_at DESC").each do |m| %>
 		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
 		<div>名前:<%= m.user.user_name %></div>
-		<div>メッセージ:<%= m.matching_message %></div>
+		<div>メッセージ:<%= br(m.matching_message) %></div>
 		<%= link_to "企業詳細",company_path(m.user_id) %>
 		<%if m.user.delete_flag==true%>
 			<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>

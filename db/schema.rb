@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180728073036) do
+ActiveRecord::Schema.define(version: 20180802100757) do
 
   create_table "matchings", force: :cascade do |t|
-    t.string "matching_message"
+    t.text "matching_message"
     t.boolean "matching_flag"
     t.integer "user_id"
     t.integer "need_id"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20180728073036) do
     t.integer "place_field_id"
     t.string "anuual"
     t.string "employment"
-    t.string "pr"
+    t.text "pr"
     t.integer "settlement_id"
     t.integer "type_id"
     t.string "image_id"

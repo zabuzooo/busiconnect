@@ -1,10 +1,74 @@
-<div><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %></div>
-<div>最終編集日：<%=@user.updated_at.strftime('%Y/%m/%d')%></div>
-<div>会社名：<%=@user.user_name%></div>
-<div>業種：<%=@user.type.type_industry%></div>
-<div>住所：<%=@user.address%></div>
-<div>マッチング希望地域：<%=@user.place_field.place_m%></div>
-<div>決算内容：<%=@user.settlement.settlement_account%></div>
-<div>年商：<%=@user.anuual%></div>
-<div>従業員数：<%=@user.employment%></div>
-<div>会社紹介：<%=br(@user.pr)%></div>
+<div class="container" style="margin-top: 20px;">
+	<div class="row">
+		<div style="font-weight: bold; font-size: 25px; margin-bottom:30px; width: 160px; border-bottom:solid #1955ff54 2px;;" >会社情報</div>
+		<div class="col-lg-12">
+			<div class="col-lg-4" style="margin-bottom: 50px;">
+				<div style="padding: 10px 20px;"><%= attachment_image_tag @user,:image,:fill,150,150, format: 'jpg', fallback: 'no_image.jpg', :size => '150x150' %></div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">最終編集日：</div>
+					<div class="col-lg-7">
+						<div><%=@user.updated_at.strftime('%Y/%m/%d')%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">会社名：</div>
+					<div class="col-lg-7">
+						<div><%=@user.user_name%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">業種：</div>
+					<div class="col-lg-7">
+						<div><%=@user.type.type_industry%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">住所：</div>
+					<div class="col-lg-7">
+						<div><%=@user.address%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">募集地域：</div>
+					<div class="col-lg-7">
+						<div><%=@user.place_field.place_m%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">決算内容：</div>
+					<div class="col-lg-7">
+						<div><%=@user.settlement.settlement_account%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">年商：</div>
+					<div class="col-lg-7">
+						<div><%=@user.anuual%></div>
+					</div>
+				</div>
+
+				<div class="col-lg-12 company_under">
+					<div class="col-lg-5 company_text">従業員数：</div>
+					<div class="col-lg-7">
+						<div><%=@user.employment%></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8" style="margin: 60px 0;">
+				<div class="col-lg-12" style="background-color: #1f53a2; border: solid #a7a3bb 2px;">
+					<p style="color: white; font-weight: bold; font-size: 17px;padding-top: 3px;">会社説明</p>
+				</div>
+				<div class="col-lg-12" style="margin-top: 20px; padding: 0 20px;">
+					<div><%=br(@user.pr)%></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

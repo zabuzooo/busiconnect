@@ -170,3 +170,24 @@
 .login_container{
   height: 492px
 }
+
+/*ユーザーエディット*/
+.user_new_back{
+  background-image: url(portfolio-4.jpg);
+    width: 100%;
+    height: 920px;
+    background-size: cover;
+}
+.user_new_back_mask{
+  height: 100%;
+  background: rgba(251, 255, 184, 0.85);
+}
+
+.company_text{
+    font-weight: bold;
+    font-size: 17px;
+}
+.company_under{
+  border-bottom: dashed #c5c5c5 1px;
+  margin:10px 0;
+}
