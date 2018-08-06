@@ -34,8 +34,6 @@ class NeedsController < ApplicationController
   def show
     @need = Need.find(params[:id])
     @mt = @need.matchings
-    # ↓はマッチング申請を同ユーザーが複数できなくするもの、実装するべきか悩む。一度しか登録できないのはどうなんだろう
-    # @search_current_user_mt = @mt.where(user_id: current_user.id)
   end
 
   def edit

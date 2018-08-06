@@ -49,6 +49,9 @@ class UsersController < ApplicationController
 
 	def company
 		@user = User.find(params[:id])
+		@delete_flag_needs = Need.where(delete_flag: false)
+		@user_needs = @delete_flag_needs.where(user_id: params[:id])
+		@needs = @user_needs.page(params[:page]).per(3)
 	end
 
 	private
