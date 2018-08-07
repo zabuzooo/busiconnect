@@ -1,10 +1,27 @@
-<div>利用者一覧</div>
-	<% @users.each do |u| %>
-		<%= link_to user_path(u),:style=>"text-decoration:none; color:black;" do %>
-			<div><%=u.user_name%></div>
-			<div><%=u.created_at.strftime('%Y年%m月%d日')%></div>
-			<% if u.delete_flag == true %>
-				<div style="color: red;">退会済みのユーザー</div>
-			<% end %>
+<div class="container" style="height: auto; overflow: hidden; margin-bottom: 60px;">
+	<div class="row">
+		<div class="col-lg-12">
+			<div style="font-size: 22px; font-weight: bold; margin: 20px 0 30px 0;">利用者一覧</div>
+		</div>
+
+		<% @users.each do |u| %>
+			<div class="col-lg-6" style="border-bottom: dashed gray 1px;padding: 10px 0;">
+				<%= link_to user_path(u),:style=>"text-decoration:none; color:black;" do %>
+					<div class="col-lg-3" style="margin: 10px 0;">
+						<%= attachment_image_tag u, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+					</div>
+					<div class="col-lg-9" style="margin: 5px 0;">
+						<div style="margin-bottom: 5px;"><%=u.user_name%></div>
+						<div>業種　　：<%= u.type.type_industry %></div>
+						<div>募集地域：<p style="color: orange; display: inline-block;margin-bottom: 15px;"><%= u.place_field.place_m %></p></div>
+						<div>登録日　：<%=u.created_at.strftime('%Y年%m月%d日')%></div>
+						<div>最終編集：<%=u.updated_at.strftime('%Y年%m月%d日')%></div>
+						<% if u.delete_flag == true %>
+							<div style="color: red;">退会済みのユーザー</div>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
 		<% end %>
-	<% end %>
+	</div>
+</div>
