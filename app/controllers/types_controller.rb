@@ -9,6 +9,7 @@ class TypesController < ApplicationController
   	@types = Type.all
   	@place_fields = PlaceField.all
   	@purposes = Purpose.all
+    @under_needs = Need.where(delete_flag: false)
   end
 
   private

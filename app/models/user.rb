@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :needs
   has_many :matchings
   has_many :notifications, dependent: :destroy
+  has_many :contacts
   belongs_to :place_field
   belongs_to :settlement
   belongs_to :type

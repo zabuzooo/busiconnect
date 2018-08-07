@@ -29,6 +29,7 @@ class NeedsController < ApplicationController
     @place_fields = PlaceField.all
     @purposes = Purpose.all
     @search = Need.ransack(params[:q])
+    @under_needs = Need.where(delete_flag: false)
   end
 
   def show
@@ -60,6 +61,7 @@ class NeedsController < ApplicationController
     @types = Type.all
     @place_fields = PlaceField.all
     @purposes = Purpose.all
+    @under_needs = Need.where(delete_flag: false)
   end
 
   def introduction
@@ -68,7 +70,7 @@ class NeedsController < ApplicationController
   def destroy
     need = Need.find(params[:id])
     need.update(delete_flag: 'true')
-    flash[:danger] = '商品を削除しました'
+    flash[:danger] = 'ニーズを削除しました'
     redirect_to root_path
   end
 

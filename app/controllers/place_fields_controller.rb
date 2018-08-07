@@ -8,6 +8,7 @@ class PlaceFieldsController < ApplicationController
   	@place_field = PlaceField.find(params[:id])
   	@need = Need.where(place_field_id: @place_field, delete_flag: false)
   	@needs = @need.page(params[:page]).per(8)
+    @under_needs = Need.where(delete_flag: false)
   end
   private
     def sing_in_check

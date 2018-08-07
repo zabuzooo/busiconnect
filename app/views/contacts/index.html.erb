@@ -1,0 +1,30 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12"><h2>お問い合わせ一覧</h2></div>
+
+		<div class="col-lg-12">
+			<div class="col-lg-1"></div>
+			<div class="col-lg-10">
+			<% if @contacts.present? %>
+				<% @contacts.each do |contact| %>
+					<div style="border-bottom: solid gray 1px;margin-bottom: 30px;">
+						<div>
+							<h4><%= link_to "#{contact.user.user_name}さん",user_path(contact.user) %></h4>
+						</div>
+						<div>
+							お問い合わせ日：<%= contact.created_at.strftime('%Y/%m/%d')  %>
+						</div>
+						<div>
+							内容：<%= contact.content %>
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+				<div style="margin-bottom: 30px;">お問い合わせはありません</div>
+			<% end %>
+			</div>
+			<div class="col-lg-1"></div>
+		</div>
+	</div>
+</div>
