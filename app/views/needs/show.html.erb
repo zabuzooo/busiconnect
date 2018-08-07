@@ -2,7 +2,7 @@
   	<div class="row">
     	<div class="col-lg-12" style="margin: 50px 0 30px 0; padding:10px;  border-top:solid #6f94fd 2px; border-bottom:solid #6f94fd 2px;">
 			<div>
-				<h2 style="color: #0000c5; font-weight: bold;">
+				<h2 style="color: #0b0bab; font-weight: bold;">
 					<%= @need.need_title %>
 				</h2>
 			</div>
@@ -102,60 +102,88 @@
 
 <div class="col-lg-12" style="margin-top: 30px; border-top:solid gray 2px;">
 <% if admin_signed_in? %>
-	<div style="color: red;">管理者はマッチング申請送信できません</div>
+	<div style="color: red;font-weight: bold; margin: 20px 0;">管理者はマッチング申請送信できません</div>
  <% elsif @need.user_id != current_user.id %>
 <br>
   <div id="follow_form">
      	<%= form_for(current_user.matchings.build(id: @need.id), url: test_path) do |f| %>
   			<div><%= f.hidden_field :id %></div>
   			<div><%= f.text_area :matching_message, rows:'6', class: 'form-control', placeholder: 'マッチング申請するにあたりメッセージを入力してください' %></div>
-  			<%= f.submit "マッチング申請する", class: "btn btn-large btn-primary follow-btn" , data: {confirm: "マッチング申請を相手企業に送信します、本当によろしいですか？"}%>
-		<% end %>
+  			<%= f.submit "マッチング申請する", class: "btn btn-large btn-primary follow-btn" , data: {confirm: "マッチング申請を相手企業に送信します、
+申請内容の齟齬を防止するため送信後のメッセージ編集はできません。
 
+本当に送信しますか？"}%>
+		<% end %>
   </div>
 <% end %>
 <br><br>
+
 <% if admin_signed_in? %>
-	<p>受信しているマッチング申請</p>
+	<div class="col-lg-12" style="border-top:solid gray 2px; border-bottom:solid gray 2px; background-color: #a6ceff; margin-bottom: 20px;">
+		<h5 style="font-weight: bold;">受信しているマッチング申請</h5>
+	</div>
 	<% @mt.order("created_at DESC").each do |m| %>
-		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
-		<div>名前:<%= m.user.user_name %></div>
-		<div>メッセージ:<%= br(m.matching_message) %></div>
-		<%= link_to "企業詳細",company_path(m.user_id) %>
-		<%if m.user.delete_flag==true%>
-			<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>
+		<div class="col-lg-12">
+			<div class="col-lg-3" style="margin-top: 10px;">
+				<%= attachment_image_tag m.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+				<div><%= m.user.user_name %></div>
+				<div><%= m.created_at.strftime('%Y年%m月%d日 %H時%M分') %></div>
+				<div style="margin: 20px 0 10px 0;"><%= link_to "企業詳細",company_path(m.user_id) %></div>
+			</div>
+			<div class="col-lg-9" style="margin-bottom: 15px;">
+				<div style="font-weight: bold;font-size: 15px; margin-bottom: 10px;">申請メッセージ</div>
+				<div class="col-lg-12" style="border: dotted gray 1px; padding: 10px;"><%= br(m.matching_message) %></div>
+			</div>
+			<div class="col-lg-12" style="border-bottom: solid gray 1px; margin-bottom: 20px;">
+				<%if m.user.delete_flag==true%>
+					<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>
+				<% end %>
+			</div>
+		</div>
 	<% end %>
-<% end %>
 
 <% else %>
-	<p>受信しているマッチング申請</p>
-	<% @mt.order("created_at DESC").each do |m| %>
-		<div>時間:<%= m.created_at.strftime('%Y-%m-%d %H:%M:%S') %></div>
-		<div>名前:<%= m.user.user_name %></div>
-		<div>メッセージ:<%= br(m.matching_message) %></div>
-		<%= link_to "企業詳細",company_path(m.user_id) %>
-		<%if m.user.delete_flag==true%>
-			<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>
-		<% end %>
+	<div class="col-lg-12" style="border-top:solid gray 2px; border-bottom:solid gray 2px; background-color: #a6ceff; margin-bottom: 20px;">
+		<h5 style="font-weight: bold;">受信しているマッチング申請</h5>
+	</div>
+	<div class="col-lg-12" style="margin-bottom: 50px;">
+		<% @mt.order("created_at DESC").each do |m| %>
+			<div class="col-lg-12">
+				<div class="col-lg-3" style="margin-top: 10px;">
+					<%= attachment_image_tag m.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+					<div><%= m.user.user_name %></div>
+					<div><%= m.created_at.strftime('%Y年%m月%d日 %H時%M分') %></div>
+					<div style="margin: 20px 0 10px 0;"><%= link_to "企業詳細",company_path(m.user_id) %></div>
+				</div>
+				<div class="col-lg-9" style="margin-bottom: 15px;">
+					<div style="font-weight: bold;font-size: 15px; margin-bottom: 10px;">申請メッセージ</div>
+					<div class="col-lg-12" style="border: dotted gray 1px; padding: 10px;"><%= br(m.matching_message) %></div>
+				</div>
+				<div class="col-lg-12" style="border-bottom: solid gray 1px; margin-bottom: 20px;">
+					<%if m.user.delete_flag==true%>
+						<div style="color: red; margin-bottom: 10px;">※ 退会済みユーザーの為、許可した場合は御社からの連絡が必要になります</div>
+					<% end %>
 
-		<% if m.matching_s ==0 && m.need.user_id == current_user.id %>
-			<div><%= link_to '許可', matching_path(m), method: :patch, class: 'btn btn-sm btn-info', data: {confirm: "本当に許可しますか？"} %>
-			\	<%= link_to '拒否', matching_path(m), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "本当に拒否しますか？"} %></div>
-		<% elsif m.matching_s ==0 && m.user_id == current_user.id %>
-			<p>マッチング申請中</p>
-		<% elsif m.matching_s ==1 && m.need.user_id == current_user.id %>
-			<p>マッチング許可が完了しました</p>
-			<p><%=m.user.user_name%>さんのメールアドレス：<%=m.user.email%></p>
-		<% elsif m.matching_s ==1 && m.user_id == current_user.id %>
-			<p>マッチングが許可されました</p>
-			<p><%=m.need.user.user_name%>さんのメールアドレス：<%=m.need.user.email%></p>
-		<% elsif m.matching_s ==2 && m.need.user_id == current_user.id  %>
-			<p>拒否済みの申請です</p>
-		<% elsif m.matching_s ==2 && m.user_id == current_user.id  %>
-			<p>マッチングが拒否されました...</p>
+					<% if m.matching_s ==0 && m.need.user_id == current_user.id %>
+						<div style="margin-bottom: 10px;"><%= link_to '許可', matching_path(m), method: :patch, class: 'btn btn-sm btn-info', data: {confirm: "本当に許可しますか？"} %>
+						\	<%= link_to '拒否', matching_path(m), method: :delete, class: 'btn btn-sm btn-danger', data: {confirm: "本当に拒否しますか？"} %></div>
+					<% elsif m.matching_s ==0 && m.user_id == current_user.id %>
+						<p style="color: #00a28e; font-weight: bold;">マッチング申請中</p>
+					<% elsif m.matching_s ==1 && m.need.user_id == current_user.id %>
+						<p style="color: #dc01ff; font-weight: bold;">マッチング許可が完了しました</p>
+						<p style="color: #dc01ff;"><%=m.user.user_name%>さんのメールアドレス：<%=m.user.email%></p>
+					<% elsif m.matching_s ==1 && m.user_id == current_user.id %>
+						<p style="color: #dc01ff; font-weight: bold;">マッチングが許可されました</p>
+						<p style="color: #dc01ff;"><%=m.need.user.user_name%>さんのメールアドレス：<%=m.need.user.email%></p>
+					<% elsif m.matching_s ==2 && m.need.user_id == current_user.id  %>
+						<p style="color: #bf0e0e; font-weight: bold;">拒否済みの申請です</p>
+					<% elsif m.matching_s ==2 && m.user_id == current_user.id  %>
+						<p style="color: #bf0e0e; font-weight: bold;">マッチングが拒否されました...</p>
+					<% end %>
+				</div>
+			</div>
 		<% end %>
-		<div>___________________________________________</div>
-	<% end %>
+	</div>
 <%end%>
 
   </div>

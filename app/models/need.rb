@@ -1,4 +1,7 @@
 class Need < ApplicationRecord
+
+	validates :need_title, :need_text, :match_time, :place, presence: true
+
 	belongs_to :purpose
 	belongs_to :place_field
 	# belongs_to :status
