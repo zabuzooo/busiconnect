@@ -12,6 +12,7 @@ class MatchingsController < ApplicationController
     rs.need_id = need.id
     rs.save
     redirect_to need_path
+    flash[:notice] = "マッチング申請を送信しました、回答をお待ちください。申請状況はマイページから確認できます"
   end
 
   def update
@@ -19,6 +20,7 @@ class MatchingsController < ApplicationController
     @need = @mt.need
     @mt.update(matching_s:1)
     redirect_to need_path(@need)
+    flash[:notice] = "マッチング申請を許可しました"
   end
 
   def destroy
@@ -26,6 +28,7 @@ class MatchingsController < ApplicationController
     @need = @unmt.need
     @unmt.update(matching_s:2)
     redirect_to need_path(@need)
+    flash[:notice] = "マッチング申請を拒否しました"
   end
   private
     def matching_params
