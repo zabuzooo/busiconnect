@@ -64,7 +64,7 @@
 
 			<div class="col-md-5" style="border-top:solid gray 2px;border-bottom:solid gray 2px; margin: 5px 0 50px 0; height: auto;">
 				<div style="font-weight: bold;margin: 5px 0 0 8px;">マッチング希望日が近いもの</div>
-				<% @needs.where("match_time >= ?", Time.now).order("match_time").first(3).each do |f| %>
+				<% @under_needs.where("match_time >= ?", Time.now).order("match_time").first(3).each do |f| %>
 				<div class="need_box col-lg-12">
 					<div class="col-lg-4" style="margin: 20px 0 10px 0;">
 					<%= link_to need_path(f), :style=>"text-decoration:none; color:black;" do %>

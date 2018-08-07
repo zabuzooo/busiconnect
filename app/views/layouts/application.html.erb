@@ -17,7 +17,7 @@
         <% if admin_signed_in? %>
           <div class="header-links">
             <div class="link3"><%= link_to "利用者一覧",users_path ,class:'btn10' %></div>
-            <div class="link2"><%= link_to "問い合わせ一覧", root_path, class:'btn10' %></div>
+            <div class="link2"><%= link_to "問い合わせ一覧", contacts_path, class:'btn10' %></div>
             <div class="link3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class:'btn10' %></div>
           </div>
           <a href="/"><div class="header-logo"></div></a>
@@ -49,6 +49,12 @@
         </div>
       <% end %>
 <!-- 条件分岐終わり -->
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
+          <a class="close" data-dismiss="alert">×</a>
+          <%= msg %>
+        </div>
+      <% end %>
       </header>
     <%= yield %>
       <footer>
@@ -58,7 +64,7 @@
             <div class="col-md-offset-4 col-lg-2">
               <div><%= link_to "・サイト利用方法",use_path ,style:"text-decoration: none; color: white;"%></div>
               <div style="margin:8px 0;"><%= link_to"・イントロダクション",introduction_path,style:"text-decoration: none;color: white;"%></div>
-              <div><%= link_to "・お問い合わせ",root_path ,style:"text-decoration: none; color: white;"%></div>
+              <div><%= link_to "・お問い合わせ",new_contact_path ,style:"text-decoration: none; color: white;"%></div>
             </div>
             <div class="col-lg-3">
               <div><%= link_to "・利用規約・免責事項",agreement_path ,style:"text-decoration: none; color: white;"%></div>

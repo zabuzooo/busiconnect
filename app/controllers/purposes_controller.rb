@@ -8,6 +8,7 @@ class PurposesController < ApplicationController
   	@purpose = Purpose.find(params[:id])
   	@need = Need.where(purpose_id: @purpose, delete_flag: false)
   	@needs = @need.page(params[:page]).per(8)
+    @under_needs = Need.where(delete_flag: false)
   end
   private
     def sing_in_check

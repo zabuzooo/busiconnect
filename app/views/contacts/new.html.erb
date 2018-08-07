@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12" style="margin-top: 20px;"><h2>お問い合わせフォーム</h2></div>
+
+		<div class="col-lg-1"></div>
+		<div class="col-lg-10">
+           <%= form_for @contact do |d| %>
+				<h4 style="margin-top: 20px;">問い合わせ内容</h4>
+				<div><%= d.text_area :content , rows:'13',class: 'form-control',:placeholder =>"問い合わせ内容がニーズに関するものは、認識番号もお知らせください"%></div>
+				<div style="margin: 20px 0 73px 0;"><%= d.submit "問い合わせを送信" ,class: "btn btn-info" %></div>
+			<% end %>
+       </div>
+       <div class="col-lg-1"></div>
+    </div>
+  </div>

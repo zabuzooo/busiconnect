@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get 'users/completion' => 'users#completion'
   resources :users, only: [:index, :show, :edit, :update]
 
-    # テスト
   post '/test/:id' => 'matchings#create', as: 'test'
   resources :matchings
   get 'notifications/:id/link_through', to: 'notifications#link_through',as: :link_through
@@ -37,10 +36,12 @@ Rails.application.routes.draw do
   resources :place_fields, only: [:show]
   resources :purposes, only: [:show]
 
+  # フッターリンク先
   get '/use' => 'users#use'
   get '/law' => 'users#law'
   get '/forces' => 'users#forces'
   get '/agreement' => 'users#agreement'
+  resources :contacts, only: [:index, :new, :create, :show]
 
   get 'user_company/:id' => 'users#company', as: 'company'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
