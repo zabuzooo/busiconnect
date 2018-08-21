@@ -1,25 +1,26 @@
 <section class="signup_container">
   <div class="sign_up_box">
-    <div class="headline_box">
+    <div class="headline_box" style="margin-bottom: 20px;">
       <h2 class="signup_headline">会員登録</h2>
     </div>
-    <div class="procedure_container clearfix">
-    <div class="procedure_content_1">
-      会員情報入力
+    <div class="procedure_container clearfix" style="margin-bottom: 10px;">
+      <div class="procedure_content_1">
+        会員情報入力
+      </div>
+      <div class="kigou">&#9654;</div>
+      <div class="procedure_content_2">
+        入力内容確認
+      </div>
+      <div class="kigou">&#9654;</div>
+      <div class="procedure_content_3">
+        登録完了
+      </div>
     </div>
-    <div class="kigou">&#9654;</div>
-    <div class="procedure_content_2">
-      入力内容確認
-    </div>
-    <div class="kigou">&#9654;</div>
-    <div class="procedure_content_3">
-      登録完了
-    </div>
-    </div>
+
           <%= form_for @user, url: {action: "confirm"} do |f| %>
         <%= devise_error_messages! %>
-    <table border="1" class="signup_table">
 
+    <table border="1" class="signup_table" style="margin-bottom: 20px;">
         <tr>
           <div class="field">
             <td class="td_color"><%= f.label :会社名,class: "label_name" %><br /></td>
@@ -90,8 +91,8 @@
           </div>
         </tr>
       </table>
-      <div class="actions">
-        <%= f.submit "確認",class: "signup_btn" %>
+      <div style="margin: 0 auto; width: 40px; margin-bottom: 30px;">
+        <%= f.submit "確認",class: 'btn btn-md btn-success' %>
       </div>
         <% end %>
   </div>
