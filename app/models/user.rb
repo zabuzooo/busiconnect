@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :postal, {presence:true,numericality: { only_integer: true }}
   validates :address, {presence:true}
   validates :tell, {presence:true, numericality: { only_integer: true }}
+  validates_acceptance_of :agreement, on: :confirm
 
   def active_for_authentication?
     super && !delete_flag?

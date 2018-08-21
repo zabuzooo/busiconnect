@@ -18,8 +18,8 @@
   </div>
   <div class="user_confirm_table_box">
     <table class="user_confirm_table" border="1">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
       <tr>
         <td class="td_color"><%= f.label :会社名,class: "label_name" %></td>
         <td class="td_text"><%= @user.user_name %></td>
@@ -114,7 +114,8 @@
       2018年7月26日 制定
   </div>
   <div class="checkbox_container">
-    <input type="checkbox"  class="checkbox" id="agree-check"><p class="checkbox_text">規約に同意する</p>
+    <%= f.check_box :agreement, :as => :boolean, checked:false %>
+    <p class="checkbox_text">規約に同意する</p>
   </div>
   <div class="actions">
     <%= f.submit "登録",class: "signup_btn btn10",id: "submit-btn" %>
