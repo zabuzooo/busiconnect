@@ -40,7 +40,7 @@
 </div>
 
 <div class="col-md-offset-1 col-lg-4" style="margin-top: 10px;">
-	<%= attachment_image_tag @need, :image, :fill, 200, 200, format: 'jpg', fallback: 'no_image.jpg', :size => '200x200' %>
+	<%= attachment_image_tag @need, :image, :fill, 200, 200, format: 'jpg', fallback: '/no_image.jpg', :size => '200x200' %>
 </div>
 
 <div class="col-lg-12">
@@ -95,7 +95,7 @@
 		<%=link_to "会社詳細情報へ",company_path(@need.user_id) %>
 	</div>
 	<div class="col-md-offset-1 col-lg-4" style="margin-top: 50px;">
-		<%= attachment_image_tag @need.user, :image, :fill, 200, 200, format: 'jpg', fallback: 'no_image.jpg', :size => '200x200' %>
+		<%= attachment_image_tag @need.user, :image, :fill, 200, 200, format: 'jpg', fallback: '/no_image.jpg', :size => '200x200' %>
 	</div>
 </div>
 <!-- tuika -->
@@ -125,7 +125,7 @@
 	<% @mt.order("created_at DESC").each do |m| %>
 		<div class="col-lg-12">
 			<div class="col-lg-3" style="margin-top: 10px;">
-				<%= attachment_image_tag m.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+				<%= attachment_image_tag m.user, :image, :fill, 100, 100, format: 'jpg', fallback: '/no_image.jpg', :size => '100x100' %>
 				<div><%= m.user.user_name %></div>
 				<div><%= m.created_at.strftime('%Y年%m月%d日 %H時%M分') %></div>
 				<div style="margin: 20px 0 10px 0;"><%= link_to "企業詳細",company_path(m.user_id) %></div>
@@ -150,7 +150,7 @@
 		<% @mt.order("created_at DESC").each do |m| %>
 			<div class="col-lg-12">
 				<div class="col-lg-3" style="margin-top: 10px;">
-					<%= attachment_image_tag m.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+					<%= attachment_image_tag m.user, :image, :fill, 100, 100, format: 'jpg', fallback: '/no_image.jpg', :size => '100x100' %>
 					<div><%= m.user.user_name %></div>
 					<div><%= m.created_at.strftime('%Y年%m月%d日 %H時%M分') %></div>
 					<div style="margin: 20px 0 10px 0;"><%= link_to "企業詳細",company_path(m.user_id) %></div>
