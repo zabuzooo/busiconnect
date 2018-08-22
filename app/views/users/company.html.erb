@@ -3,7 +3,7 @@
 		<div style="font-weight: bold; font-size: 25px; margin-bottom:30px; width: 160px; border-bottom:solid #1955ff54 2px;;" >会社情報</div>
 		<div class="col-lg-12">
 			<div class="col-lg-4" style="margin-bottom: 50px;">
-				<div style="padding: 10px 20px;"><%= attachment_image_tag @user,:image,:fill,150,150, format: 'jpg', fallback: 'no_image.jpg', :size => '150x150' %></div>
+				<div style="padding: 10px 20px;"><%= attachment_image_tag @user,:image,:fill,150,150, format: 'jpg', fallback: '/no_image.jpg', :size => '150x150' %></div>
 
 				<div class="col-lg-12 company_under">
 					<div class="col-lg-5 company_text">最終編集日：</div>
@@ -78,7 +78,7 @@
 			          <div class="col-lg-12" style="margin-bottom: 20px; border-bottom: dashed #8e8b8b73 2px;">
 			            <div class="col-lg-3" style="margin: 20px 0 30px 0">
 			            <%= link_to need_path(f), :style=>"text-decoration:none; color:black;" do %>
-			              <%= attachment_image_tag f, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+			              <%= attachment_image_tag f, :image, :fill, 100, 100, format: 'jpg', fallback: '/no_image.jpg', :size => '100x100' %>
 			            </div>
 			            <div class="col-lg-9" style="overflow: hidden; margin-top: 20px;">
 			              <h4 style="margin: 0 0 0 0;color: #0000c5; font-weight: bold;"><%= f.need_title.truncate(26) %></h4>

@@ -8,7 +8,7 @@
 			<div class="col-lg-6" style="border-bottom: dashed gray 1px;padding: 10px 0;">
 				<%= link_to user_path(u),:style=>"text-decoration:none; color:black;" do %>
 					<div class="col-lg-3" style="margin: 10px 0;">
-						<%= attachment_image_tag u, :image, :fill, 100, 100, format: 'jpg', fallback: 'no_image.jpg', :size => '100x100' %>
+						<%= attachment_image_tag u, :image, :fill, 100, 100, format: 'jpg', fallback: '/no_image.jpg', :size => '100x100' %>
 					</div>
 					<div class="col-lg-9" style="margin: 5px 0;">
 						<div style="margin-bottom: 5px;"><%=u.user_name%></div>
